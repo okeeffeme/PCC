@@ -218,7 +218,7 @@ export function DataTable<TData extends RowData>({
         </p>
         <div className={styles.paginationControls}>
           {pageSizeOptions && pageSizeOptions.length > 0 ? (
-            <label>
+            <label className={styles.paginationControlsWrapper}>
               <span className={styles.paginationInfo}>Rows per page</span>{" "}
               <select
                 value={pagination.pageSize}

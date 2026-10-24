@@ -69,9 +69,15 @@
   flex-wrap: wrap;
 }
 
+.paginationControlsWrapper {
+  display: flex;
+  align-items: center;
+}
+
 .paginationInfo {
   color: var(--color-text-muted);
   font-size: var(--font-size-xs);
+  margin-right: var(--space-2);
 }
 
 .paginationControls {

@@ -11,8 +11,6 @@ import {
 import { useDebouncedValue } from "../hooks/useDebouncedValue";
 import { useDeviceMutations } from "../hooks/useDeviceMutations";
 import { useUrlParam } from "../hooks/useUrlParam";
-// The chart pulls in Recharts, which is a third of the bundle. It lives below
-// the fold, so it is loaded on demand instead of blocking the first paint.
 const HistorySection = lazy(async () => {
   const module = await import("../../history/components/HistorySection");
   return { default: module.HistorySection };
@@ -20,7 +18,11 @@ const HistorySection = lazy(async () => {
 import { DeviceFilters } from "./DeviceFilters";
 import { DeviceFormDialog } from "./DeviceFormDialog";
 import { DeviceTableSection } from "./DeviceTableSection";
-import { SummaryCards } from "./SummaryCards";
+import { SummarySection } from "./SummarySection";
+import { SummarySectionSkeleton } from "./SummarySection";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { fetchDeviceSummary } from "../api/deviceApi";
+import { deviceKeys } from "../api/queryKeys";
 import styles from "./DeviceDashboard.module.css";
 
 const ALL = "all";
@@ -39,12 +41,6 @@ function isSortOrder(value: string): value is SortOrder {
   return value === "asc" || value === "desc";
 }
 
-/**
- * The dashboard is a composition of three independent sections. Each one owns
- * its own Suspense + Error Boundary, so a failing chart cannot take the fleet
- * table down with it. Filters, sort and paging live in the URL so views can be
- * shared; the search input is debounced before it hits the server.
- */
 export function DeviceDashboard() {
   const [statusParam, setStatusParam] = useUrlParam("status", ALL);
   const [query, setQueryParam] = useUrlParam("q", "");
@@ -68,6 +64,17 @@ export function DeviceDashboard() {
     Math.max(1, Number.parseInt(pageSizeParam, 10) || DEFAULT_PAGE_SIZE),
   );
   const debouncedQuery = useDebouncedValue(query, 300);
+
+  const { data: summary } = useQuery({
+    queryKey: deviceKeys.summary({ q: debouncedQuery || undefined }),
+    queryFn: ({ signal }) => fetchDeviceSummary({ q: debouncedQuery || undefined }, signal),
+    placeholderData: keepPreviousData,
+    staleTime: 15_000,
+    refetchOnWindowFocus: false,
+    retry: 1,
+  });
+
+  const values = summary ?? { total: 0, online: 0, inMeeting: 0, offline: 0, deactivated: 0 };
 
   const setStatus = (next: DeviceStatus | typeof ALL) => {
     setStatusParam(next === ALL ? "" : next);
@@ -94,14 +101,20 @@ export function DeviceDashboard() {
         <h2 className={styles.sectionTitle} id="summary-heading">
           Fleet summary
         </h2>
+        <DeviceFilters
+          query={query}
+          onQueryChange={setQuery}
+          onAddDevice={() => setFormState({ mode: "open", device: null })}
+        />
         <ErrorBoundary>
-          <Suspense fallback={<SummaryCardsSkeleton />}>
-            <SummaryCards
+          <Suspense fallback={<SummarySectionSkeleton />}>
+            <SummarySection
               activeStatus={status}
               onStatusChange={setStatus}
               query={debouncedQuery}
               sort={sort}
               order={order}
+              summary={values}
             />
           </Suspense>
         </ErrorBoundary>
@@ -111,11 +124,6 @@ export function DeviceDashboard() {
         <h2 className={styles.sectionTitle} id="devices-heading">
           Devices
         </h2>
-        <DeviceFilters
-          query={query}
-          onQueryChange={setQuery}
-          onAddDevice={() => setFormState({ mode: "open", device: null })}
-        />
         <ErrorBoundary
           resetKey={`${debouncedQuery}:${status}:${sort}:${order}:${page}:${pageSize}`}
         >
@@ -154,16 +162,6 @@ export function DeviceDashboard() {
         onClose={() => setFormState({ mode: "closed" })}
         mutations={mutations}
       />
-    </div>
-  );
-}
-
-function SummaryCardsSkeleton() {
-  return (
-    <div className={styles.skeletonRow} aria-busy="true">
-      {[0, 1, 2, 3, 4].map((index) => (
-        <Skeleton key={index} height="84px" radius="var(--radius-lg)" />
-      ))}
     </div>
   );
 }
