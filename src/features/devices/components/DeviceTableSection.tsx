@@ -54,7 +54,7 @@ export function DeviceTableSection({
   mutations,
   onEdit,
 }: DeviceTableSectionProps) {
-  const { data } = useDevicesQuery({
+  const { data, isPlaceholderData } = useDevicesQuery({
     q: query || undefined,
     status: status === ALL ? undefined : status,
     sort,
@@ -62,7 +62,7 @@ export function DeviceTableSection({
     page,
     pageSize,
   });
-  const devices = data.items;
+  const devices = data?.items ?? [];
   const [pendingDelete, setPendingDelete] = useState<Device | null>(null);
 
   const sorting: DataTableSort[] = [{ id: sort, desc: order === "desc" }];
@@ -104,8 +104,12 @@ export function DeviceTableSection({
     [onEdit],
   );
 
+  if (!data) {
+    return null;
+  }
+
   return (
-    <div className={styles.section}>
+    <div className={styles.section} style={{ opacity: isPlaceholderData ? 0.6 : 1 }}>
       <DataTable
         caption={`Devices in the fleet — ${data.total} matches, showing ${devices.length} on this page.`}
         columns={columns}
@@ -151,41 +155,29 @@ export function DeviceTableSection({
         }
         footer={
           <>
-            <button
-              type="button"
-              className={styles.confirmCancel}
-              onClick={() => setPendingDelete(null)}
-            >
+            <button type="button" onClick={() => setPendingDelete(null)}>
               Cancel
             </button>
             <button
               type="button"
-              className={styles.confirmDelete}
-              disabled={mutations.remove.isPending}
               onClick={() => {
-                const target = pendingDelete;
-                if (!target) return;
-                mutations.remove.mutate(target.id, {
-                  onSettled: () => setPendingDelete(null),
-                });
+                if (pendingDelete) {
+                  mutations.remove.mutate(pendingDelete.id, {
+                    onSettled: () => setPendingDelete(null),
+                  });
+                }
               }}
             >
-              {mutations.remove.isPending ? "Removing…" : "Remove device"}
+              Remove
             </button>
           </>
         }
       >
-        {mutations.remove.isError ? (
-          <p className={styles.formError} role="alert">
-            {mutations.remove.error instanceof Error
-              ? mutations.remove.error.message
-              : "The device could not be removed."}
+        {pendingDelete ? (
+          <p>
+            Are you sure you want to remove <strong>{pendingDelete.name}</strong>?
           </p>
-        ) : (
-          <p className={styles.dialogBody}>
-            This removes the device from the fleet list and the summary counts.
-          </p>
-        )}
+        ) : null}
       </Dialog>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import {
   fetchDeviceHistory,
   fetchDevices,
@@ -13,16 +13,16 @@ const LIST_OPTIONS = {
   gcTime: 10 * 60_000,
   refetchOnWindowFocus: false,
   retry: 1,
+  placeholderData: keepPreviousData,
 } as const;
 
 /**
  * The device list for a specific window. Pages are cached per key so moving
- * back to a previously visited page is instant; `placeholderData` is not used
- * because `useSuspenseQuery` disallows it (and we keep the previous window by
- * key identity instead).
+ * back to a previously visited page is instant; keepPreviousData prevents
+ * flashing when filters change.
  */
 export function useDevicesQuery(params: DeviceListParams) {
-  return useSuspenseQuery({
+  return useQuery({
     queryKey: deviceKeys.list(params),
     queryFn: ({ signal }) => fetchDevices(params, signal),
     ...LIST_OPTIONS,
@@ -35,7 +35,7 @@ export function useDevicesQuery(params: DeviceListParams) {
  * the name filter so the facets match the search.
  */
 export function useDeviceSummaryQuery(filters: DeviceSummaryFilters) {
-  return useSuspenseQuery({
+  return useQuery({
     queryKey: deviceKeys.summary(filters),
     queryFn: ({ signal }) => fetchDeviceSummary(filters, signal),
     ...LIST_OPTIONS,
@@ -44,7 +44,7 @@ export function useDeviceSummaryQuery(filters: DeviceSummaryFilters) {
 
 /** Monthly aggregates are immutable for the session — no refetch needed. */
 export function useDeviceHistoryQuery() {
-  return useSuspenseQuery({
+  return useQuery({
     queryKey: deviceKeys.history(),
     queryFn: () => fetchDeviceHistory(),
     staleTime: Infinity,

@@ -1,9 +1,10 @@
-import { StatusHistoryChart } from "../../../components/StatusHistoryChart/StatusHistoryChart";
 import { useDeviceHistoryQuery } from "../../devices/hooks/useDevices";
+import { StatusHistoryChart } from "../../../components/StatusHistoryChart/StatusHistoryChart";
 import styles from "./HistorySection.module.css";
 
 export function HistorySection() {
-  const { data: history } = useDeviceHistoryQuery();
+  const { data } = useDeviceHistoryQuery();
+  const history = data ?? [];
 
   return (
     <div className={styles.section}>

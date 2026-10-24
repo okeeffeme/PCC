@@ -91,7 +91,7 @@ describe("DeviceDashboard", () => {
     await user.click(screen.getByRole("button", { name: /^Remove Berlin - Boardroom A/ }));
     const dialog = await screen.findByRole("dialog", { name: "Remove device" });
 
-    await user.click(within(dialog).getByRole("button", { name: "Remove device" }));
+    await user.click(within(dialog).getByRole("button", { name: /^Remove$/ }));
 
     await waitFor(() => {
       expect(screen.queryByRole("row", { name: /Berlin - Boardroom A/ })).not.toBeInTheDocument();
