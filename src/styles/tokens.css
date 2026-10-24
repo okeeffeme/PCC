@@ -1,0 +1,79 @@
+/*
+ * Design tokens — the single place a theme would change.
+ * Components only ever reference var(--token); nothing hardcodes a colour.
+ */
+:root {
+  /* ---- colour: neutrals ---- */
+  --color-bg: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f0f2f5;
+  --color-border: #d9dde4;
+  --color-border-strong: #b4bbc6;
+  --color-text: #131720;
+  --color-text-muted: #59616f;
+  --color-text-inverse: #ffffff;
+
+  /* ---- colour: intent ---- */
+  --color-primary: #1f4fe0;
+  --color-primary-hover: #173cb8;
+  --color-primary-soft: #e8edfd;
+  --color-danger: #b42318;
+  --color-danger-hover: #93150c;
+  --color-danger-soft: #fdeceb;
+  --color-success: #0b6b41;
+  --color-success-soft: #e4f4ec;
+  --color-warning: #8a5300;
+  --color-warning-soft: #fdf2df;
+
+  /* ---- colour: status ---- */
+  --status-online-fg: #0b5c38;
+  --status-online-bg: #e2f4ea;
+  --status-inmeeting-fg: #1c44a8;
+  --status-inmeeting-bg: #e5ebfc;
+  --status-offline-fg: #545c69;
+  --status-offline-bg: #edf0f3;
+  --status-deactivated-fg: #8a2f2f;
+  --status-deactivated-bg: #f9e9e9;
+
+  /* ---- space ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* ---- radius ---- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  /* ---- typography ---- */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-size-xs: 12px;
+  --font-size-sm: 13px;
+  --font-size-md: 15px;
+  --font-size-lg: 18px;
+  --font-size-xl: 22px;
+  --font-size-2xl: 30px;
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.55;
+  --font-weight-medium: 500;
+  --font-weight-bold: 650;
+
+  /* ---- elevation ---- */
+  --shadow-sm: 0 1px 2px rgb(19 23 32 / 8%);
+  --shadow-md: 0 10px 28px rgb(19 23 32 / 12%);
+
+  /* ---- focus ---- */
+  --focus-ring-color: var(--color-primary);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+
+  /* ---- layout ---- */
+  --content-max-width: 1180px;
+  --transition-fast: 120ms;
+}

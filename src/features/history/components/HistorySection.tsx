@@ -1,0 +1,17 @@
+import { StatusHistoryChart } from "../../../components/StatusHistoryChart/StatusHistoryChart";
+import { useDeviceHistoryQuery } from "../../devices/hooks/useDevices";
+import styles from "./HistorySection.module.css";
+
+export function HistorySection() {
+  const { data: history } = useDeviceHistoryQuery();
+
+  return (
+    <div className={styles.section}>
+      <p className={styles.caption}>
+        Monthly fleet status since {history[0]?.period ?? "—"}. The counts are the share of devices
+        in each state at the end of the month.
+      </p>
+      <StatusHistoryChart data={history} />
+    </div>
+  );
+}

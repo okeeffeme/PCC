@@ -1,0 +1,3033 @@
+[
+  {
+    "id": "dev-001",
+    "name": "London - Boardroom 1",
+    "model": "Neat Bar Pro",
+    "description": "Primary boardroom system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-002",
+    "name": "New York - Huddle 1",
+    "model": "Logitech Rally Bar",
+    "description": "Primary huddle system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-003",
+    "name": "Tokyo - Conf Room 1",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary conf room system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-004",
+    "name": "Berlin - Exec Suite 1",
+    "model": "Poly Studio X50",
+    "description": "Primary exec suite system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-005",
+    "name": "Sydney - Training Room 1",
+    "model": "Crestron Flex",
+    "description": "Primary training room system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-006",
+    "name": "San Francisco - Focus Room 1",
+    "model": "Neat Bar Pro",
+    "description": "Primary focus room system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-007",
+    "name": "Singapore - Boardroom 1",
+    "model": "Logitech Rally Bar",
+    "description": "Primary boardroom system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-008",
+    "name": "Paris - Huddle 1",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary huddle system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-009",
+    "name": "London - Conf Room 2",
+    "model": "Poly Studio X50",
+    "description": "Primary conf room system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-010",
+    "name": "New York - Exec Suite 2",
+    "model": "Crestron Flex",
+    "description": "Primary exec suite system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-011",
+    "name": "Tokyo - Training Room 2",
+    "model": "Neat Bar Pro",
+    "description": "Primary training room system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-012",
+    "name": "Berlin - Focus Room 2",
+    "model": "Logitech Rally Bar",
+    "description": "Primary focus room system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-013",
+    "name": "Sydney - Boardroom 2",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary boardroom system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-014",
+    "name": "San Francisco - Huddle 2",
+    "model": "Poly Studio X50",
+    "description": "Primary huddle system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-015",
+    "name": "Singapore - Conf Room 2",
+    "model": "Crestron Flex",
+    "description": "Primary conf room system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-016",
+    "name": "Paris - Exec Suite 2",
+    "model": "Neat Bar Pro",
+    "description": "Primary exec suite system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-017",
+    "name": "London - Training Room 3",
+    "model": "Logitech Rally Bar",
+    "description": "Primary training room system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-018",
+    "name": "New York - Focus Room 3",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary focus room system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-019",
+    "name": "Tokyo - Boardroom 3",
+    "model": "Poly Studio X50",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-020",
+    "name": "Berlin - Huddle 3",
+    "model": "Crestron Flex",
+    "description": "Primary huddle system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-021",
+    "name": "Sydney - Conf Room 3",
+    "model": "Neat Bar Pro",
+    "description": "Primary conf room system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-022",
+    "name": "San Francisco - Exec Suite 3",
+    "model": "Logitech Rally Bar",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-023",
+    "name": "Singapore - Training Room 3",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary training room system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-024",
+    "name": "Paris - Focus Room 3",
+    "model": "Poly Studio X50",
+    "description": "Primary focus room system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-025",
+    "name": "London - Boardroom 4",
+    "model": "Crestron Flex",
+    "description": "Primary boardroom system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-026",
+    "name": "New York - Huddle 4",
+    "model": "Neat Bar Pro",
+    "description": "Primary huddle system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-027",
+    "name": "Tokyo - Conf Room 4",
+    "model": "Logitech Rally Bar",
+    "description": "Primary conf room system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-028",
+    "name": "Berlin - Exec Suite 4",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary exec suite system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-029",
+    "name": "Sydney - Training Room 4",
+    "model": "Poly Studio X50",
+    "description": "Primary training room system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-030",
+    "name": "San Francisco - Focus Room 4",
+    "model": "Crestron Flex",
+    "description": "Primary focus room system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-031",
+    "name": "Singapore - Boardroom 4",
+    "model": "Neat Bar Pro",
+    "description": "Primary boardroom system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-032",
+    "name": "Paris - Huddle 4",
+    "model": "Logitech Rally Bar",
+    "description": "Primary huddle system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-033",
+    "name": "London - Conf Room 5",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary conf room system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-034",
+    "name": "New York - Exec Suite 5",
+    "model": "Poly Studio X50",
+    "description": "Primary exec suite system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-035",
+    "name": "Tokyo - Training Room 5",
+    "model": "Crestron Flex",
+    "description": "Primary training room system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-036",
+    "name": "Berlin - Focus Room 5",
+    "model": "Neat Bar Pro",
+    "description": "Primary focus room system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-037",
+    "name": "Sydney - Boardroom 5",
+    "model": "Logitech Rally Bar",
+    "description": "Primary boardroom system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-038",
+    "name": "San Francisco - Huddle 5",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary huddle system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-039",
+    "name": "Singapore - Conf Room 5",
+    "model": "Poly Studio X50",
+    "description": "Primary conf room system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-040",
+    "name": "Paris - Exec Suite 5",
+    "model": "Crestron Flex",
+    "description": "Primary exec suite system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-041",
+    "name": "London - Training Room 6",
+    "model": "Neat Bar Pro",
+    "description": "Primary training room system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-042",
+    "name": "New York - Focus Room 6",
+    "model": "Logitech Rally Bar",
+    "description": "Primary focus room system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-043",
+    "name": "Tokyo - Boardroom 6",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-044",
+    "name": "Berlin - Huddle 6",
+    "model": "Poly Studio X50",
+    "description": "Primary huddle system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-045",
+    "name": "Sydney - Conf Room 6",
+    "model": "Crestron Flex",
+    "description": "Primary conf room system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-046",
+    "name": "San Francisco - Exec Suite 6",
+    "model": "Neat Bar Pro",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-047",
+    "name": "Singapore - Training Room 6",
+    "model": "Logitech Rally Bar",
+    "description": "Primary training room system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-048",
+    "name": "Paris - Focus Room 6",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary focus room system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-049",
+    "name": "London - Boardroom 7",
+    "model": "Poly Studio X50",
+    "description": "Primary boardroom system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-050",
+    "name": "New York - Huddle 7",
+    "model": "Crestron Flex",
+    "description": "Primary huddle system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-051",
+    "name": "Tokyo - Conf Room 7",
+    "model": "Neat Bar Pro",
+    "description": "Primary conf room system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-052",
+    "name": "Berlin - Exec Suite 7",
+    "model": "Logitech Rally Bar",
+    "description": "Primary exec suite system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-053",
+    "name": "Sydney - Training Room 7",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary training room system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-054",
+    "name": "San Francisco - Focus Room 7",
+    "model": "Poly Studio X50",
+    "description": "Primary focus room system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-055",
+    "name": "Singapore - Boardroom 7",
+    "model": "Crestron Flex",
+    "description": "Primary boardroom system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-056",
+    "name": "Paris - Huddle 7",
+    "model": "Neat Bar Pro",
+    "description": "Primary huddle system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-057",
+    "name": "London - Conf Room 8",
+    "model": "Logitech Rally Bar",
+    "description": "Primary conf room system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-058",
+    "name": "New York - Exec Suite 8",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary exec suite system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-059",
+    "name": "Tokyo - Training Room 8",
+    "model": "Poly Studio X50",
+    "description": "Primary training room system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-060",
+    "name": "Berlin - Focus Room 8",
+    "model": "Crestron Flex",
+    "description": "Primary focus room system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-061",
+    "name": "Sydney - Boardroom 8",
+    "model": "Neat Bar Pro",
+    "description": "Primary boardroom system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-062",
+    "name": "San Francisco - Huddle 8",
+    "model": "Logitech Rally Bar",
+    "description": "Primary huddle system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-063",
+    "name": "Singapore - Conf Room 8",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary conf room system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-064",
+    "name": "Paris - Exec Suite 8",
+    "model": "Poly Studio X50",
+    "description": "Primary exec suite system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-065",
+    "name": "London - Training Room 9",
+    "model": "Crestron Flex",
+    "description": "Primary training room system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-066",
+    "name": "New York - Focus Room 9",
+    "model": "Neat Bar Pro",
+    "description": "Primary focus room system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-067",
+    "name": "Tokyo - Boardroom 9",
+    "model": "Logitech Rally Bar",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-068",
+    "name": "Berlin - Huddle 9",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary huddle system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-069",
+    "name": "Sydney - Conf Room 9",
+    "model": "Poly Studio X50",
+    "description": "Primary conf room system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-070",
+    "name": "San Francisco - Exec Suite 9",
+    "model": "Crestron Flex",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-071",
+    "name": "Singapore - Training Room 9",
+    "model": "Neat Bar Pro",
+    "description": "Primary training room system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-072",
+    "name": "Paris - Focus Room 9",
+    "model": "Logitech Rally Bar",
+    "description": "Primary focus room system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-073",
+    "name": "London - Boardroom 10",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary boardroom system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-074",
+    "name": "New York - Huddle 10",
+    "model": "Poly Studio X50",
+    "description": "Primary huddle system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-075",
+    "name": "Tokyo - Conf Room 10",
+    "model": "Crestron Flex",
+    "description": "Primary conf room system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-076",
+    "name": "Berlin - Exec Suite 10",
+    "model": "Neat Bar Pro",
+    "description": "Primary exec suite system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-077",
+    "name": "Sydney - Training Room 10",
+    "model": "Logitech Rally Bar",
+    "description": "Primary training room system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-078",
+    "name": "San Francisco - Focus Room 10",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary focus room system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-079",
+    "name": "Singapore - Boardroom 10",
+    "model": "Poly Studio X50",
+    "description": "Primary boardroom system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-080",
+    "name": "Paris - Huddle 10",
+    "model": "Crestron Flex",
+    "description": "Primary huddle system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-081",
+    "name": "London - Conf Room 11",
+    "model": "Neat Bar Pro",
+    "description": "Primary conf room system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-082",
+    "name": "New York - Exec Suite 11",
+    "model": "Logitech Rally Bar",
+    "description": "Primary exec suite system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-083",
+    "name": "Tokyo - Training Room 11",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary training room system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-084",
+    "name": "Berlin - Focus Room 11",
+    "model": "Poly Studio X50",
+    "description": "Primary focus room system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-085",
+    "name": "Sydney - Boardroom 11",
+    "model": "Crestron Flex",
+    "description": "Primary boardroom system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-086",
+    "name": "San Francisco - Huddle 11",
+    "model": "Neat Bar Pro",
+    "description": "Primary huddle system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-087",
+    "name": "Singapore - Conf Room 11",
+    "model": "Logitech Rally Bar",
+    "description": "Primary conf room system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-088",
+    "name": "Paris - Exec Suite 11",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary exec suite system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-089",
+    "name": "London - Training Room 12",
+    "model": "Poly Studio X50",
+    "description": "Primary training room system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-090",
+    "name": "New York - Focus Room 12",
+    "model": "Crestron Flex",
+    "description": "Primary focus room system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-091",
+    "name": "Tokyo - Boardroom 12",
+    "model": "Neat Bar Pro",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-092",
+    "name": "Berlin - Huddle 12",
+    "model": "Logitech Rally Bar",
+    "description": "Primary huddle system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-093",
+    "name": "Sydney - Conf Room 12",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary conf room system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-094",
+    "name": "San Francisco - Exec Suite 12",
+    "model": "Poly Studio X50",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-095",
+    "name": "Singapore - Training Room 12",
+    "model": "Crestron Flex",
+    "description": "Primary training room system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-096",
+    "name": "Paris - Focus Room 12",
+    "model": "Neat Bar Pro",
+    "description": "Primary focus room system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-097",
+    "name": "London - Boardroom 13",
+    "model": "Logitech Rally Bar",
+    "description": "Primary boardroom system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-098",
+    "name": "New York - Huddle 13",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary huddle system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-099",
+    "name": "Tokyo - Conf Room 13",
+    "model": "Poly Studio X50",
+    "description": "Primary conf room system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-100",
+    "name": "Berlin - Exec Suite 13",
+    "model": "Crestron Flex",
+    "description": "Primary exec suite system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-101",
+    "name": "Sydney - Training Room 13",
+    "model": "Neat Bar Pro",
+    "description": "Primary training room system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-102",
+    "name": "San Francisco - Focus Room 13",
+    "model": "Logitech Rally Bar",
+    "description": "Primary focus room system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-103",
+    "name": "Singapore - Boardroom 13",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary boardroom system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-104",
+    "name": "Paris - Huddle 13",
+    "model": "Poly Studio X50",
+    "description": "Primary huddle system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-105",
+    "name": "London - Conf Room 14",
+    "model": "Crestron Flex",
+    "description": "Primary conf room system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-106",
+    "name": "New York - Exec Suite 14",
+    "model": "Neat Bar Pro",
+    "description": "Primary exec suite system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-107",
+    "name": "Tokyo - Training Room 14",
+    "model": "Logitech Rally Bar",
+    "description": "Primary training room system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-108",
+    "name": "Berlin - Focus Room 14",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary focus room system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-109",
+    "name": "Sydney - Boardroom 14",
+    "model": "Poly Studio X50",
+    "description": "Primary boardroom system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-110",
+    "name": "San Francisco - Huddle 14",
+    "model": "Crestron Flex",
+    "description": "Primary huddle system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-111",
+    "name": "Singapore - Conf Room 14",
+    "model": "Neat Bar Pro",
+    "description": "Primary conf room system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-112",
+    "name": "Paris - Exec Suite 14",
+    "model": "Logitech Rally Bar",
+    "description": "Primary exec suite system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-113",
+    "name": "London - Training Room 15",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary training room system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-114",
+    "name": "New York - Focus Room 15",
+    "model": "Poly Studio X50",
+    "description": "Primary focus room system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-115",
+    "name": "Tokyo - Boardroom 15",
+    "model": "Crestron Flex",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-116",
+    "name": "Berlin - Huddle 15",
+    "model": "Neat Bar Pro",
+    "description": "Primary huddle system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-117",
+    "name": "Sydney - Conf Room 15",
+    "model": "Logitech Rally Bar",
+    "description": "Primary conf room system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-118",
+    "name": "San Francisco - Exec Suite 15",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-119",
+    "name": "Singapore - Training Room 15",
+    "model": "Poly Studio X50",
+    "description": "Primary training room system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-120",
+    "name": "Paris - Focus Room 15",
+    "model": "Crestron Flex",
+    "description": "Primary focus room system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-121",
+    "name": "London - Boardroom 16",
+    "model": "Neat Bar Pro",
+    "description": "Primary boardroom system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-122",
+    "name": "New York - Huddle 16",
+    "model": "Logitech Rally Bar",
+    "description": "Primary huddle system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-123",
+    "name": "Tokyo - Conf Room 16",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary conf room system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-124",
+    "name": "Berlin - Exec Suite 16",
+    "model": "Poly Studio X50",
+    "description": "Primary exec suite system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-125",
+    "name": "Sydney - Training Room 16",
+    "model": "Crestron Flex",
+    "description": "Primary training room system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-126",
+    "name": "San Francisco - Focus Room 16",
+    "model": "Neat Bar Pro",
+    "description": "Primary focus room system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-127",
+    "name": "Singapore - Boardroom 16",
+    "model": "Logitech Rally Bar",
+    "description": "Primary boardroom system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-128",
+    "name": "Paris - Huddle 16",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary huddle system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-129",
+    "name": "London - Conf Room 17",
+    "model": "Poly Studio X50",
+    "description": "Primary conf room system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-130",
+    "name": "New York - Exec Suite 17",
+    "model": "Crestron Flex",
+    "description": "Primary exec suite system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-131",
+    "name": "Tokyo - Training Room 17",
+    "model": "Neat Bar Pro",
+    "description": "Primary training room system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-132",
+    "name": "Berlin - Focus Room 17",
+    "model": "Logitech Rally Bar",
+    "description": "Primary focus room system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-133",
+    "name": "Sydney - Boardroom 17",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary boardroom system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-134",
+    "name": "San Francisco - Huddle 17",
+    "model": "Poly Studio X50",
+    "description": "Primary huddle system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-135",
+    "name": "Singapore - Conf Room 17",
+    "model": "Crestron Flex",
+    "description": "Primary conf room system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-136",
+    "name": "Paris - Exec Suite 17",
+    "model": "Neat Bar Pro",
+    "description": "Primary exec suite system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-137",
+    "name": "London - Training Room 18",
+    "model": "Logitech Rally Bar",
+    "description": "Primary training room system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-138",
+    "name": "New York - Focus Room 18",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary focus room system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-139",
+    "name": "Tokyo - Boardroom 18",
+    "model": "Poly Studio X50",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-140",
+    "name": "Berlin - Huddle 18",
+    "model": "Crestron Flex",
+    "description": "Primary huddle system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-141",
+    "name": "Sydney - Conf Room 18",
+    "model": "Neat Bar Pro",
+    "description": "Primary conf room system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-142",
+    "name": "San Francisco - Exec Suite 18",
+    "model": "Logitech Rally Bar",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-143",
+    "name": "Singapore - Training Room 18",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary training room system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-144",
+    "name": "Paris - Focus Room 18",
+    "model": "Poly Studio X50",
+    "description": "Primary focus room system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-145",
+    "name": "London - Boardroom 19",
+    "model": "Crestron Flex",
+    "description": "Primary boardroom system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-146",
+    "name": "New York - Huddle 19",
+    "model": "Neat Bar Pro",
+    "description": "Primary huddle system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-147",
+    "name": "Tokyo - Conf Room 19",
+    "model": "Logitech Rally Bar",
+    "description": "Primary conf room system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-148",
+    "name": "Berlin - Exec Suite 19",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary exec suite system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-149",
+    "name": "Sydney - Training Room 19",
+    "model": "Poly Studio X50",
+    "description": "Primary training room system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-150",
+    "name": "San Francisco - Focus Room 19",
+    "model": "Crestron Flex",
+    "description": "Primary focus room system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-151",
+    "name": "Singapore - Boardroom 19",
+    "model": "Neat Bar Pro",
+    "description": "Primary boardroom system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-152",
+    "name": "Paris - Huddle 19",
+    "model": "Logitech Rally Bar",
+    "description": "Primary huddle system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-153",
+    "name": "London - Conf Room 20",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary conf room system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-154",
+    "name": "New York - Exec Suite 20",
+    "model": "Poly Studio X50",
+    "description": "Primary exec suite system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-155",
+    "name": "Tokyo - Training Room 20",
+    "model": "Crestron Flex",
+    "description": "Primary training room system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-156",
+    "name": "Berlin - Focus Room 20",
+    "model": "Neat Bar Pro",
+    "description": "Primary focus room system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-157",
+    "name": "Sydney - Boardroom 20",
+    "model": "Logitech Rally Bar",
+    "description": "Primary boardroom system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-158",
+    "name": "San Francisco - Huddle 20",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary huddle system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-159",
+    "name": "Singapore - Conf Room 20",
+    "model": "Poly Studio X50",
+    "description": "Primary conf room system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-160",
+    "name": "Paris - Exec Suite 20",
+    "model": "Crestron Flex",
+    "description": "Primary exec suite system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-161",
+    "name": "London - Training Room 21",
+    "model": "Neat Bar Pro",
+    "description": "Primary training room system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-162",
+    "name": "New York - Focus Room 21",
+    "model": "Logitech Rally Bar",
+    "description": "Primary focus room system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-163",
+    "name": "Tokyo - Boardroom 21",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-164",
+    "name": "Berlin - Huddle 21",
+    "model": "Poly Studio X50",
+    "description": "Primary huddle system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-165",
+    "name": "Sydney - Conf Room 21",
+    "model": "Crestron Flex",
+    "description": "Primary conf room system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-166",
+    "name": "San Francisco - Exec Suite 21",
+    "model": "Neat Bar Pro",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-167",
+    "name": "Singapore - Training Room 21",
+    "model": "Logitech Rally Bar",
+    "description": "Primary training room system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-168",
+    "name": "Paris - Focus Room 21",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary focus room system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-169",
+    "name": "London - Boardroom 22",
+    "model": "Poly Studio X50",
+    "description": "Primary boardroom system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-170",
+    "name": "New York - Huddle 22",
+    "model": "Crestron Flex",
+    "description": "Primary huddle system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-171",
+    "name": "Tokyo - Conf Room 22",
+    "model": "Neat Bar Pro",
+    "description": "Primary conf room system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-172",
+    "name": "Berlin - Exec Suite 22",
+    "model": "Logitech Rally Bar",
+    "description": "Primary exec suite system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-173",
+    "name": "Sydney - Training Room 22",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary training room system in Sydney",
+    "status": "online"
+  },
+  {
+    "id": "dev-174",
+    "name": "San Francisco - Focus Room 22",
+    "model": "Poly Studio X50",
+    "description": "Primary focus room system in San Francisco",
+    "status": "online"
+  },
+  {
+    "id": "dev-175",
+    "name": "Singapore - Boardroom 22",
+    "model": "Crestron Flex",
+    "description": "Primary boardroom system in Singapore",
+    "status": "online"
+  },
+  {
+    "id": "dev-176",
+    "name": "Paris - Huddle 22",
+    "model": "Neat Bar Pro",
+    "description": "Primary huddle system in Paris",
+    "status": "online"
+  },
+  {
+    "id": "dev-177",
+    "name": "London - Conf Room 23",
+    "model": "Logitech Rally Bar",
+    "description": "Primary conf room system in London",
+    "status": "online"
+  },
+  {
+    "id": "dev-178",
+    "name": "New York - Exec Suite 23",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary exec suite system in New York",
+    "status": "online"
+  },
+  {
+    "id": "dev-179",
+    "name": "Tokyo - Training Room 23",
+    "model": "Poly Studio X50",
+    "description": "Primary training room system in Tokyo",
+    "status": "online"
+  },
+  {
+    "id": "dev-180",
+    "name": "Berlin - Focus Room 23",
+    "model": "Crestron Flex",
+    "description": "Primary focus room system in Berlin",
+    "status": "online"
+  },
+  {
+    "id": "dev-181",
+    "name": "Sydney - Boardroom 23",
+    "model": "Neat Bar Pro",
+    "description": "Primary boardroom system in Sydney",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-182",
+    "name": "San Francisco - Huddle 23",
+    "model": "Logitech Rally Bar",
+    "description": "Primary huddle system in San Francisco",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-183",
+    "name": "Singapore - Conf Room 23",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary conf room system in Singapore",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-184",
+    "name": "Paris - Exec Suite 23",
+    "model": "Poly Studio X50",
+    "description": "Primary exec suite system in Paris",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-185",
+    "name": "London - Training Room 24",
+    "model": "Crestron Flex",
+    "description": "Primary training room system in London",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-186",
+    "name": "New York - Focus Room 24",
+    "model": "Neat Bar Pro",
+    "description": "Primary focus room system in New York",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-187",
+    "name": "Tokyo - Boardroom 24",
+    "model": "Logitech Rally Bar",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-188",
+    "name": "Berlin - Huddle 24",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary huddle system in Berlin",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-189",
+    "name": "Sydney - Conf Room 24",
+    "model": "Poly Studio X50",
+    "description": "Primary conf room system in Sydney",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-190",
+    "name": "San Francisco - Exec Suite 24",
+    "model": "Crestron Flex",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-191",
+    "name": "Singapore - Training Room 24",
+    "model": "Neat Bar Pro",
+    "description": "Primary training room system in Singapore",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-192",
+    "name": "Paris - Focus Room 24",
+    "model": "Logitech Rally Bar",
+    "description": "Primary focus room system in Paris",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-193",
+    "name": "London - Boardroom 25",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary boardroom system in London",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-194",
+    "name": "New York - Huddle 25",
+    "model": "Poly Studio X50",
+    "description": "Primary huddle system in New York",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-195",
+    "name": "Tokyo - Conf Room 25",
+    "model": "Crestron Flex",
+    "description": "Primary conf room system in Tokyo",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-196",
+    "name": "Berlin - Exec Suite 25",
+    "model": "Neat Bar Pro",
+    "description": "Primary exec suite system in Berlin",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-197",
+    "name": "Sydney - Training Room 25",
+    "model": "Logitech Rally Bar",
+    "description": "Primary training room system in Sydney",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-198",
+    "name": "San Francisco - Focus Room 25",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary focus room system in San Francisco",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-199",
+    "name": "Singapore - Boardroom 25",
+    "model": "Poly Studio X50",
+    "description": "Primary boardroom system in Singapore",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-200",
+    "name": "Paris - Huddle 25",
+    "model": "Crestron Flex",
+    "description": "Primary huddle system in Paris",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-201",
+    "name": "London - Conf Room 26",
+    "model": "Neat Bar Pro",
+    "description": "Primary conf room system in London",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-202",
+    "name": "New York - Exec Suite 26",
+    "model": "Logitech Rally Bar",
+    "description": "Primary exec suite system in New York",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-203",
+    "name": "Tokyo - Training Room 26",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary training room system in Tokyo",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-204",
+    "name": "Berlin - Focus Room 26",
+    "model": "Poly Studio X50",
+    "description": "Primary focus room system in Berlin",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-205",
+    "name": "Sydney - Boardroom 26",
+    "model": "Crestron Flex",
+    "description": "Primary boardroom system in Sydney",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-206",
+    "name": "San Francisco - Huddle 26",
+    "model": "Neat Bar Pro",
+    "description": "Primary huddle system in San Francisco",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-207",
+    "name": "Singapore - Conf Room 26",
+    "model": "Logitech Rally Bar",
+    "description": "Primary conf room system in Singapore",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-208",
+    "name": "Paris - Exec Suite 26",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary exec suite system in Paris",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-209",
+    "name": "London - Training Room 27",
+    "model": "Poly Studio X50",
+    "description": "Primary training room system in London",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-210",
+    "name": "New York - Focus Room 27",
+    "model": "Crestron Flex",
+    "description": "Primary focus room system in New York",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-211",
+    "name": "Tokyo - Boardroom 27",
+    "model": "Neat Bar Pro",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-212",
+    "name": "Berlin - Huddle 27",
+    "model": "Logitech Rally Bar",
+    "description": "Primary huddle system in Berlin",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-213",
+    "name": "Sydney - Conf Room 27",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary conf room system in Sydney",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-214",
+    "name": "San Francisco - Exec Suite 27",
+    "model": "Poly Studio X50",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-215",
+    "name": "Singapore - Training Room 27",
+    "model": "Crestron Flex",
+    "description": "Primary training room system in Singapore",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-216",
+    "name": "Paris - Focus Room 27",
+    "model": "Neat Bar Pro",
+    "description": "Primary focus room system in Paris",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-217",
+    "name": "London - Boardroom 28",
+    "model": "Logitech Rally Bar",
+    "description": "Primary boardroom system in London",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-218",
+    "name": "New York - Huddle 28",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary huddle system in New York",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-219",
+    "name": "Tokyo - Conf Room 28",
+    "model": "Poly Studio X50",
+    "description": "Primary conf room system in Tokyo",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-220",
+    "name": "Berlin - Exec Suite 28",
+    "model": "Crestron Flex",
+    "description": "Primary exec suite system in Berlin",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-221",
+    "name": "Sydney - Training Room 28",
+    "model": "Neat Bar Pro",
+    "description": "Primary training room system in Sydney",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-222",
+    "name": "San Francisco - Focus Room 28",
+    "model": "Logitech Rally Bar",
+    "description": "Primary focus room system in San Francisco",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-223",
+    "name": "Singapore - Boardroom 28",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary boardroom system in Singapore",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-224",
+    "name": "Paris - Huddle 28",
+    "model": "Poly Studio X50",
+    "description": "Primary huddle system in Paris",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-225",
+    "name": "London - Conf Room 29",
+    "model": "Crestron Flex",
+    "description": "Primary conf room system in London",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-226",
+    "name": "New York - Exec Suite 29",
+    "model": "Neat Bar Pro",
+    "description": "Primary exec suite system in New York",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-227",
+    "name": "Tokyo - Training Room 29",
+    "model": "Logitech Rally Bar",
+    "description": "Primary training room system in Tokyo",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-228",
+    "name": "Berlin - Focus Room 29",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary focus room system in Berlin",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-229",
+    "name": "Sydney - Boardroom 29",
+    "model": "Poly Studio X50",
+    "description": "Primary boardroom system in Sydney",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-230",
+    "name": "San Francisco - Huddle 29",
+    "model": "Crestron Flex",
+    "description": "Primary huddle system in San Francisco",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-231",
+    "name": "Singapore - Conf Room 29",
+    "model": "Neat Bar Pro",
+    "description": "Primary conf room system in Singapore",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-232",
+    "name": "Paris - Exec Suite 29",
+    "model": "Logitech Rally Bar",
+    "description": "Primary exec suite system in Paris",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-233",
+    "name": "London - Training Room 30",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary training room system in London",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-234",
+    "name": "New York - Focus Room 30",
+    "model": "Poly Studio X50",
+    "description": "Primary focus room system in New York",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-235",
+    "name": "Tokyo - Boardroom 30",
+    "model": "Crestron Flex",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-236",
+    "name": "Berlin - Huddle 30",
+    "model": "Neat Bar Pro",
+    "description": "Primary huddle system in Berlin",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-237",
+    "name": "Sydney - Conf Room 30",
+    "model": "Logitech Rally Bar",
+    "description": "Primary conf room system in Sydney",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-238",
+    "name": "San Francisco - Exec Suite 30",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-239",
+    "name": "Singapore - Training Room 30",
+    "model": "Poly Studio X50",
+    "description": "Primary training room system in Singapore",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-240",
+    "name": "Paris - Focus Room 30",
+    "model": "Crestron Flex",
+    "description": "Primary focus room system in Paris",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-241",
+    "name": "London - Boardroom 31",
+    "model": "Neat Bar Pro",
+    "description": "Primary boardroom system in London",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-242",
+    "name": "New York - Huddle 31",
+    "model": "Logitech Rally Bar",
+    "description": "Primary huddle system in New York",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-243",
+    "name": "Tokyo - Conf Room 31",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary conf room system in Tokyo",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-244",
+    "name": "Berlin - Exec Suite 31",
+    "model": "Poly Studio X50",
+    "description": "Primary exec suite system in Berlin",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-245",
+    "name": "Sydney - Training Room 31",
+    "model": "Crestron Flex",
+    "description": "Primary training room system in Sydney",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-246",
+    "name": "San Francisco - Focus Room 31",
+    "model": "Neat Bar Pro",
+    "description": "Primary focus room system in San Francisco",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-247",
+    "name": "Singapore - Boardroom 31",
+    "model": "Logitech Rally Bar",
+    "description": "Primary boardroom system in Singapore",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-248",
+    "name": "Paris - Huddle 31",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary huddle system in Paris",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-249",
+    "name": "London - Conf Room 32",
+    "model": "Poly Studio X50",
+    "description": "Primary conf room system in London",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-250",
+    "name": "New York - Exec Suite 32",
+    "model": "Crestron Flex",
+    "description": "Primary exec suite system in New York",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-251",
+    "name": "Tokyo - Training Room 32",
+    "model": "Neat Bar Pro",
+    "description": "Primary training room system in Tokyo",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-252",
+    "name": "Berlin - Focus Room 32",
+    "model": "Logitech Rally Bar",
+    "description": "Primary focus room system in Berlin",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-253",
+    "name": "Sydney - Boardroom 32",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary boardroom system in Sydney",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-254",
+    "name": "San Francisco - Huddle 32",
+    "model": "Poly Studio X50",
+    "description": "Primary huddle system in San Francisco",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-255",
+    "name": "Singapore - Conf Room 32",
+    "model": "Crestron Flex",
+    "description": "Primary conf room system in Singapore",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-256",
+    "name": "Paris - Exec Suite 32",
+    "model": "Neat Bar Pro",
+    "description": "Primary exec suite system in Paris",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-257",
+    "name": "London - Training Room 33",
+    "model": "Logitech Rally Bar",
+    "description": "Primary training room system in London",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-258",
+    "name": "New York - Focus Room 33",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary focus room system in New York",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-259",
+    "name": "Tokyo - Boardroom 33",
+    "model": "Poly Studio X50",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-260",
+    "name": "Berlin - Huddle 33",
+    "model": "Crestron Flex",
+    "description": "Primary huddle system in Berlin",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-261",
+    "name": "Sydney - Conf Room 33",
+    "model": "Neat Bar Pro",
+    "description": "Primary conf room system in Sydney",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-262",
+    "name": "San Francisco - Exec Suite 33",
+    "model": "Logitech Rally Bar",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-263",
+    "name": "Singapore - Training Room 33",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary training room system in Singapore",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-264",
+    "name": "Paris - Focus Room 33",
+    "model": "Poly Studio X50",
+    "description": "Primary focus room system in Paris",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-265",
+    "name": "London - Boardroom 34",
+    "model": "Crestron Flex",
+    "description": "Primary boardroom system in London",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-266",
+    "name": "New York - Huddle 34",
+    "model": "Neat Bar Pro",
+    "description": "Primary huddle system in New York",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-267",
+    "name": "Tokyo - Conf Room 34",
+    "model": "Logitech Rally Bar",
+    "description": "Primary conf room system in Tokyo",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-268",
+    "name": "Berlin - Exec Suite 34",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary exec suite system in Berlin",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-269",
+    "name": "Sydney - Training Room 34",
+    "model": "Poly Studio X50",
+    "description": "Primary training room system in Sydney",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-270",
+    "name": "San Francisco - Focus Room 34",
+    "model": "Crestron Flex",
+    "description": "Primary focus room system in San Francisco",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-271",
+    "name": "Singapore - Boardroom 34",
+    "model": "Neat Bar Pro",
+    "description": "Primary boardroom system in Singapore",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-272",
+    "name": "Paris - Huddle 34",
+    "model": "Logitech Rally Bar",
+    "description": "Primary huddle system in Paris",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-273",
+    "name": "London - Conf Room 35",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary conf room system in London",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-274",
+    "name": "New York - Exec Suite 35",
+    "model": "Poly Studio X50",
+    "description": "Primary exec suite system in New York",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-275",
+    "name": "Tokyo - Training Room 35",
+    "model": "Crestron Flex",
+    "description": "Primary training room system in Tokyo",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-276",
+    "name": "Berlin - Focus Room 35",
+    "model": "Neat Bar Pro",
+    "description": "Primary focus room system in Berlin",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-277",
+    "name": "Sydney - Boardroom 35",
+    "model": "Logitech Rally Bar",
+    "description": "Primary boardroom system in Sydney",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-278",
+    "name": "San Francisco - Huddle 35",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary huddle system in San Francisco",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-279",
+    "name": "Singapore - Conf Room 35",
+    "model": "Poly Studio X50",
+    "description": "Primary conf room system in Singapore",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-280",
+    "name": "Paris - Exec Suite 35",
+    "model": "Crestron Flex",
+    "description": "Primary exec suite system in Paris",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-281",
+    "name": "London - Training Room 36",
+    "model": "Neat Bar Pro",
+    "description": "Primary training room system in London",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-282",
+    "name": "New York - Focus Room 36",
+    "model": "Logitech Rally Bar",
+    "description": "Primary focus room system in New York",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-283",
+    "name": "Tokyo - Boardroom 36",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-284",
+    "name": "Berlin - Huddle 36",
+    "model": "Poly Studio X50",
+    "description": "Primary huddle system in Berlin",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-285",
+    "name": "Sydney - Conf Room 36",
+    "model": "Crestron Flex",
+    "description": "Primary conf room system in Sydney",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-286",
+    "name": "San Francisco - Exec Suite 36",
+    "model": "Neat Bar Pro",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-287",
+    "name": "Singapore - Training Room 36",
+    "model": "Logitech Rally Bar",
+    "description": "Primary training room system in Singapore",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-288",
+    "name": "Paris - Focus Room 36",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary focus room system in Paris",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-289",
+    "name": "London - Boardroom 37",
+    "model": "Poly Studio X50",
+    "description": "Primary boardroom system in London",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-290",
+    "name": "New York - Huddle 37",
+    "model": "Crestron Flex",
+    "description": "Primary huddle system in New York",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-291",
+    "name": "Tokyo - Conf Room 37",
+    "model": "Neat Bar Pro",
+    "description": "Primary conf room system in Tokyo",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-292",
+    "name": "Berlin - Exec Suite 37",
+    "model": "Logitech Rally Bar",
+    "description": "Primary exec suite system in Berlin",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-293",
+    "name": "Sydney - Training Room 37",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary training room system in Sydney",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-294",
+    "name": "San Francisco - Focus Room 37",
+    "model": "Poly Studio X50",
+    "description": "Primary focus room system in San Francisco",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-295",
+    "name": "Singapore - Boardroom 37",
+    "model": "Crestron Flex",
+    "description": "Primary boardroom system in Singapore",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-296",
+    "name": "Paris - Huddle 37",
+    "model": "Neat Bar Pro",
+    "description": "Primary huddle system in Paris",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-297",
+    "name": "London - Conf Room 38",
+    "model": "Logitech Rally Bar",
+    "description": "Primary conf room system in London",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-298",
+    "name": "New York - Exec Suite 38",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary exec suite system in New York",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-299",
+    "name": "Tokyo - Training Room 38",
+    "model": "Poly Studio X50",
+    "description": "Primary training room system in Tokyo",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-300",
+    "name": "Berlin - Focus Room 38",
+    "model": "Crestron Flex",
+    "description": "Primary focus room system in Berlin",
+    "status": "inMeeting"
+  },
+  {
+    "id": "dev-301",
+    "name": "Sydney - Boardroom 38",
+    "model": "Neat Bar Pro",
+    "description": "Primary boardroom system in Sydney",
+    "status": "offline"
+  },
+  {
+    "id": "dev-302",
+    "name": "San Francisco - Huddle 38",
+    "model": "Logitech Rally Bar",
+    "description": "Primary huddle system in San Francisco",
+    "status": "offline"
+  },
+  {
+    "id": "dev-303",
+    "name": "Singapore - Conf Room 38",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary conf room system in Singapore",
+    "status": "offline"
+  },
+  {
+    "id": "dev-304",
+    "name": "Paris - Exec Suite 38",
+    "model": "Poly Studio X50",
+    "description": "Primary exec suite system in Paris",
+    "status": "offline"
+  },
+  {
+    "id": "dev-305",
+    "name": "London - Training Room 39",
+    "model": "Crestron Flex",
+    "description": "Primary training room system in London",
+    "status": "offline"
+  },
+  {
+    "id": "dev-306",
+    "name": "New York - Focus Room 39",
+    "model": "Neat Bar Pro",
+    "description": "Primary focus room system in New York",
+    "status": "offline"
+  },
+  {
+    "id": "dev-307",
+    "name": "Tokyo - Boardroom 39",
+    "model": "Logitech Rally Bar",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "offline"
+  },
+  {
+    "id": "dev-308",
+    "name": "Berlin - Huddle 39",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary huddle system in Berlin",
+    "status": "offline"
+  },
+  {
+    "id": "dev-309",
+    "name": "Sydney - Conf Room 39",
+    "model": "Poly Studio X50",
+    "description": "Primary conf room system in Sydney",
+    "status": "offline"
+  },
+  {
+    "id": "dev-310",
+    "name": "San Francisco - Exec Suite 39",
+    "model": "Crestron Flex",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "offline"
+  },
+  {
+    "id": "dev-311",
+    "name": "Singapore - Training Room 39",
+    "model": "Neat Bar Pro",
+    "description": "Primary training room system in Singapore",
+    "status": "offline"
+  },
+  {
+    "id": "dev-312",
+    "name": "Paris - Focus Room 39",
+    "model": "Logitech Rally Bar",
+    "description": "Primary focus room system in Paris",
+    "status": "offline"
+  },
+  {
+    "id": "dev-313",
+    "name": "London - Boardroom 40",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary boardroom system in London",
+    "status": "offline"
+  },
+  {
+    "id": "dev-314",
+    "name": "New York - Huddle 40",
+    "model": "Poly Studio X50",
+    "description": "Primary huddle system in New York",
+    "status": "offline"
+  },
+  {
+    "id": "dev-315",
+    "name": "Tokyo - Conf Room 40",
+    "model": "Crestron Flex",
+    "description": "Primary conf room system in Tokyo",
+    "status": "offline"
+  },
+  {
+    "id": "dev-316",
+    "name": "Berlin - Exec Suite 40",
+    "model": "Neat Bar Pro",
+    "description": "Primary exec suite system in Berlin",
+    "status": "offline"
+  },
+  {
+    "id": "dev-317",
+    "name": "Sydney - Training Room 40",
+    "model": "Logitech Rally Bar",
+    "description": "Primary training room system in Sydney",
+    "status": "offline"
+  },
+  {
+    "id": "dev-318",
+    "name": "San Francisco - Focus Room 40",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary focus room system in San Francisco",
+    "status": "offline"
+  },
+  {
+    "id": "dev-319",
+    "name": "Singapore - Boardroom 40",
+    "model": "Poly Studio X50",
+    "description": "Primary boardroom system in Singapore",
+    "status": "offline"
+  },
+  {
+    "id": "dev-320",
+    "name": "Paris - Huddle 40",
+    "model": "Crestron Flex",
+    "description": "Primary huddle system in Paris",
+    "status": "offline"
+  },
+  {
+    "id": "dev-321",
+    "name": "London - Conf Room 41",
+    "model": "Neat Bar Pro",
+    "description": "Primary conf room system in London",
+    "status": "offline"
+  },
+  {
+    "id": "dev-322",
+    "name": "New York - Exec Suite 41",
+    "model": "Logitech Rally Bar",
+    "description": "Primary exec suite system in New York",
+    "status": "offline"
+  },
+  {
+    "id": "dev-323",
+    "name": "Tokyo - Training Room 41",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary training room system in Tokyo",
+    "status": "offline"
+  },
+  {
+    "id": "dev-324",
+    "name": "Berlin - Focus Room 41",
+    "model": "Poly Studio X50",
+    "description": "Primary focus room system in Berlin",
+    "status": "offline"
+  },
+  {
+    "id": "dev-325",
+    "name": "Sydney - Boardroom 41",
+    "model": "Crestron Flex",
+    "description": "Primary boardroom system in Sydney",
+    "status": "offline"
+  },
+  {
+    "id": "dev-326",
+    "name": "San Francisco - Huddle 41",
+    "model": "Neat Bar Pro",
+    "description": "Primary huddle system in San Francisco",
+    "status": "offline"
+  },
+  {
+    "id": "dev-327",
+    "name": "Singapore - Conf Room 41",
+    "model": "Logitech Rally Bar",
+    "description": "Primary conf room system in Singapore",
+    "status": "offline"
+  },
+  {
+    "id": "dev-328",
+    "name": "Paris - Exec Suite 41",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary exec suite system in Paris",
+    "status": "offline"
+  },
+  {
+    "id": "dev-329",
+    "name": "London - Training Room 42",
+    "model": "Poly Studio X50",
+    "description": "Primary training room system in London",
+    "status": "offline"
+  },
+  {
+    "id": "dev-330",
+    "name": "New York - Focus Room 42",
+    "model": "Crestron Flex",
+    "description": "Primary focus room system in New York",
+    "status": "offline"
+  },
+  {
+    "id": "dev-331",
+    "name": "Tokyo - Boardroom 42",
+    "model": "Neat Bar Pro",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "offline"
+  },
+  {
+    "id": "dev-332",
+    "name": "Berlin - Huddle 42",
+    "model": "Logitech Rally Bar",
+    "description": "Primary huddle system in Berlin",
+    "status": "offline"
+  },
+  {
+    "id": "dev-333",
+    "name": "Sydney - Conf Room 42",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary conf room system in Sydney",
+    "status": "offline"
+  },
+  {
+    "id": "dev-334",
+    "name": "San Francisco - Exec Suite 42",
+    "model": "Poly Studio X50",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "offline"
+  },
+  {
+    "id": "dev-335",
+    "name": "Singapore - Training Room 42",
+    "model": "Crestron Flex",
+    "description": "Primary training room system in Singapore",
+    "status": "offline"
+  },
+  {
+    "id": "dev-336",
+    "name": "Paris - Focus Room 42",
+    "model": "Neat Bar Pro",
+    "description": "Primary focus room system in Paris",
+    "status": "offline"
+  },
+  {
+    "id": "dev-337",
+    "name": "London - Boardroom 43",
+    "model": "Logitech Rally Bar",
+    "description": "Primary boardroom system in London",
+    "status": "offline"
+  },
+  {
+    "id": "dev-338",
+    "name": "New York - Huddle 43",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary huddle system in New York",
+    "status": "offline"
+  },
+  {
+    "id": "dev-339",
+    "name": "Tokyo - Conf Room 43",
+    "model": "Poly Studio X50",
+    "description": "Primary conf room system in Tokyo",
+    "status": "offline"
+  },
+  {
+    "id": "dev-340",
+    "name": "Berlin - Exec Suite 43",
+    "model": "Crestron Flex",
+    "description": "Primary exec suite system in Berlin",
+    "status": "offline"
+  },
+  {
+    "id": "dev-341",
+    "name": "Sydney - Training Room 43",
+    "model": "Neat Bar Pro",
+    "description": "Primary training room system in Sydney",
+    "status": "offline"
+  },
+  {
+    "id": "dev-342",
+    "name": "San Francisco - Focus Room 43",
+    "model": "Logitech Rally Bar",
+    "description": "Primary focus room system in San Francisco",
+    "status": "offline"
+  },
+  {
+    "id": "dev-343",
+    "name": "Singapore - Boardroom 43",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary boardroom system in Singapore",
+    "status": "offline"
+  },
+  {
+    "id": "dev-344",
+    "name": "Paris - Huddle 43",
+    "model": "Poly Studio X50",
+    "description": "Primary huddle system in Paris",
+    "status": "offline"
+  },
+  {
+    "id": "dev-345",
+    "name": "London - Conf Room 44",
+    "model": "Crestron Flex",
+    "description": "Primary conf room system in London",
+    "status": "offline"
+  },
+  {
+    "id": "dev-346",
+    "name": "New York - Exec Suite 44",
+    "model": "Neat Bar Pro",
+    "description": "Primary exec suite system in New York",
+    "status": "offline"
+  },
+  {
+    "id": "dev-347",
+    "name": "Tokyo - Training Room 44",
+    "model": "Logitech Rally Bar",
+    "description": "Primary training room system in Tokyo",
+    "status": "offline"
+  },
+  {
+    "id": "dev-348",
+    "name": "Berlin - Focus Room 44",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary focus room system in Berlin",
+    "status": "offline"
+  },
+  {
+    "id": "dev-349",
+    "name": "Sydney - Boardroom 44",
+    "model": "Poly Studio X50",
+    "description": "Primary boardroom system in Sydney",
+    "status": "offline"
+  },
+  {
+    "id": "dev-350",
+    "name": "San Francisco - Huddle 44",
+    "model": "Crestron Flex",
+    "description": "Primary huddle system in San Francisco",
+    "status": "offline"
+  },
+  {
+    "id": "dev-351",
+    "name": "Singapore - Conf Room 44",
+    "model": "Neat Bar Pro",
+    "description": "Primary conf room system in Singapore",
+    "status": "offline"
+  },
+  {
+    "id": "dev-352",
+    "name": "Paris - Exec Suite 44",
+    "model": "Logitech Rally Bar",
+    "description": "Primary exec suite system in Paris",
+    "status": "offline"
+  },
+  {
+    "id": "dev-353",
+    "name": "London - Training Room 45",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary training room system in London",
+    "status": "offline"
+  },
+  {
+    "id": "dev-354",
+    "name": "New York - Focus Room 45",
+    "model": "Poly Studio X50",
+    "description": "Primary focus room system in New York",
+    "status": "offline"
+  },
+  {
+    "id": "dev-355",
+    "name": "Tokyo - Boardroom 45",
+    "model": "Crestron Flex",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "offline"
+  },
+  {
+    "id": "dev-356",
+    "name": "Berlin - Huddle 45",
+    "model": "Neat Bar Pro",
+    "description": "Primary huddle system in Berlin",
+    "status": "offline"
+  },
+  {
+    "id": "dev-357",
+    "name": "Sydney - Conf Room 45",
+    "model": "Logitech Rally Bar",
+    "description": "Primary conf room system in Sydney",
+    "status": "offline"
+  },
+  {
+    "id": "dev-358",
+    "name": "San Francisco - Exec Suite 45",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "offline"
+  },
+  {
+    "id": "dev-359",
+    "name": "Singapore - Training Room 45",
+    "model": "Poly Studio X50",
+    "description": "Primary training room system in Singapore",
+    "status": "offline"
+  },
+  {
+    "id": "dev-360",
+    "name": "Paris - Focus Room 45",
+    "model": "Crestron Flex",
+    "description": "Primary focus room system in Paris",
+    "status": "offline"
+  },
+  {
+    "id": "dev-361",
+    "name": "London - Boardroom 46",
+    "model": "Neat Bar Pro",
+    "description": "Primary boardroom system in London",
+    "status": "offline"
+  },
+  {
+    "id": "dev-362",
+    "name": "New York - Huddle 46",
+    "model": "Logitech Rally Bar",
+    "description": "Primary huddle system in New York",
+    "status": "offline"
+  },
+  {
+    "id": "dev-363",
+    "name": "Tokyo - Conf Room 46",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary conf room system in Tokyo",
+    "status": "offline"
+  },
+  {
+    "id": "dev-364",
+    "name": "Berlin - Exec Suite 46",
+    "model": "Poly Studio X50",
+    "description": "Primary exec suite system in Berlin",
+    "status": "offline"
+  },
+  {
+    "id": "dev-365",
+    "name": "Sydney - Training Room 46",
+    "model": "Crestron Flex",
+    "description": "Primary training room system in Sydney",
+    "status": "offline"
+  },
+  {
+    "id": "dev-366",
+    "name": "San Francisco - Focus Room 46",
+    "model": "Neat Bar Pro",
+    "description": "Primary focus room system in San Francisco",
+    "status": "offline"
+  },
+  {
+    "id": "dev-367",
+    "name": "Singapore - Boardroom 46",
+    "model": "Logitech Rally Bar",
+    "description": "Primary boardroom system in Singapore",
+    "status": "offline"
+  },
+  {
+    "id": "dev-368",
+    "name": "Paris - Huddle 46",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary huddle system in Paris",
+    "status": "offline"
+  },
+  {
+    "id": "dev-369",
+    "name": "London - Conf Room 47",
+    "model": "Poly Studio X50",
+    "description": "Primary conf room system in London",
+    "status": "offline"
+  },
+  {
+    "id": "dev-370",
+    "name": "New York - Exec Suite 47",
+    "model": "Crestron Flex",
+    "description": "Primary exec suite system in New York",
+    "status": "offline"
+  },
+  {
+    "id": "dev-371",
+    "name": "Tokyo - Training Room 47",
+    "model": "Neat Bar Pro",
+    "description": "Primary training room system in Tokyo",
+    "status": "offline"
+  },
+  {
+    "id": "dev-372",
+    "name": "Berlin - Focus Room 47",
+    "model": "Logitech Rally Bar",
+    "description": "Primary focus room system in Berlin",
+    "status": "offline"
+  },
+  {
+    "id": "dev-373",
+    "name": "Sydney - Boardroom 47",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary boardroom system in Sydney",
+    "status": "offline"
+  },
+  {
+    "id": "dev-374",
+    "name": "San Francisco - Huddle 47",
+    "model": "Poly Studio X50",
+    "description": "Primary huddle system in San Francisco",
+    "status": "offline"
+  },
+  {
+    "id": "dev-375",
+    "name": "Singapore - Conf Room 47",
+    "model": "Crestron Flex",
+    "description": "Primary conf room system in Singapore",
+    "status": "offline"
+  },
+  {
+    "id": "dev-376",
+    "name": "Paris - Exec Suite 47",
+    "model": "Neat Bar Pro",
+    "description": "Primary exec suite system in Paris",
+    "status": "offline"
+  },
+  {
+    "id": "dev-377",
+    "name": "London - Training Room 48",
+    "model": "Logitech Rally Bar",
+    "description": "Primary training room system in London",
+    "status": "offline"
+  },
+  {
+    "id": "dev-378",
+    "name": "New York - Focus Room 48",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary focus room system in New York",
+    "status": "offline"
+  },
+  {
+    "id": "dev-379",
+    "name": "Tokyo - Boardroom 48",
+    "model": "Poly Studio X50",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "offline"
+  },
+  {
+    "id": "dev-380",
+    "name": "Berlin - Huddle 48",
+    "model": "Crestron Flex",
+    "description": "Primary huddle system in Berlin",
+    "status": "offline"
+  },
+  {
+    "id": "dev-381",
+    "name": "Sydney - Conf Room 48",
+    "model": "Neat Bar Pro",
+    "description": "Primary conf room system in Sydney",
+    "status": "offline"
+  },
+  {
+    "id": "dev-382",
+    "name": "San Francisco - Exec Suite 48",
+    "model": "Logitech Rally Bar",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "offline"
+  },
+  {
+    "id": "dev-383",
+    "name": "Singapore - Training Room 48",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary training room system in Singapore",
+    "status": "offline"
+  },
+  {
+    "id": "dev-384",
+    "name": "Paris - Focus Room 48",
+    "model": "Poly Studio X50",
+    "description": "Primary focus room system in Paris",
+    "status": "offline"
+  },
+  {
+    "id": "dev-385",
+    "name": "London - Boardroom 49",
+    "model": "Crestron Flex",
+    "description": "Primary boardroom system in London",
+    "status": "offline"
+  },
+  {
+    "id": "dev-386",
+    "name": "New York - Huddle 49",
+    "model": "Neat Bar Pro",
+    "description": "Primary huddle system in New York",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-387",
+    "name": "Tokyo - Conf Room 49",
+    "model": "Logitech Rally Bar",
+    "description": "Primary conf room system in Tokyo",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-388",
+    "name": "Berlin - Exec Suite 49",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary exec suite system in Berlin",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-389",
+    "name": "Sydney - Training Room 49",
+    "model": "Poly Studio X50",
+    "description": "Primary training room system in Sydney",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-390",
+    "name": "San Francisco - Focus Room 49",
+    "model": "Crestron Flex",
+    "description": "Primary focus room system in San Francisco",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-391",
+    "name": "Singapore - Boardroom 49",
+    "model": "Neat Bar Pro",
+    "description": "Primary boardroom system in Singapore",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-392",
+    "name": "Paris - Huddle 49",
+    "model": "Logitech Rally Bar",
+    "description": "Primary huddle system in Paris",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-393",
+    "name": "London - Conf Room 50",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary conf room system in London",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-394",
+    "name": "New York - Exec Suite 50",
+    "model": "Poly Studio X50",
+    "description": "Primary exec suite system in New York",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-395",
+    "name": "Tokyo - Training Room 50",
+    "model": "Crestron Flex",
+    "description": "Primary training room system in Tokyo",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-396",
+    "name": "Berlin - Focus Room 50",
+    "model": "Neat Bar Pro",
+    "description": "Primary focus room system in Berlin",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-397",
+    "name": "Sydney - Boardroom 50",
+    "model": "Logitech Rally Bar",
+    "description": "Primary boardroom system in Sydney",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-398",
+    "name": "San Francisco - Huddle 50",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary huddle system in San Francisco",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-399",
+    "name": "Singapore - Conf Room 50",
+    "model": "Poly Studio X50",
+    "description": "Primary conf room system in Singapore",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-400",
+    "name": "Paris - Exec Suite 50",
+    "model": "Crestron Flex",
+    "description": "Primary exec suite system in Paris",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-401",
+    "name": "London - Training Room 51",
+    "model": "Neat Bar Pro",
+    "description": "Primary training room system in London",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-402",
+    "name": "New York - Focus Room 51",
+    "model": "Logitech Rally Bar",
+    "description": "Primary focus room system in New York",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-403",
+    "name": "Tokyo - Boardroom 51",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-404",
+    "name": "Berlin - Huddle 51",
+    "model": "Poly Studio X50",
+    "description": "Primary huddle system in Berlin",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-405",
+    "name": "Sydney - Conf Room 51",
+    "model": "Crestron Flex",
+    "description": "Primary conf room system in Sydney",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-406",
+    "name": "San Francisco - Exec Suite 51",
+    "model": "Neat Bar Pro",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-407",
+    "name": "Singapore - Training Room 51",
+    "model": "Logitech Rally Bar",
+    "description": "Primary training room system in Singapore",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-408",
+    "name": "Paris - Focus Room 51",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary focus room system in Paris",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-409",
+    "name": "London - Boardroom 52",
+    "model": "Poly Studio X50",
+    "description": "Primary boardroom system in London",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-410",
+    "name": "New York - Huddle 52",
+    "model": "Crestron Flex",
+    "description": "Primary huddle system in New York",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-411",
+    "name": "Tokyo - Conf Room 52",
+    "model": "Neat Bar Pro",
+    "description": "Primary conf room system in Tokyo",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-412",
+    "name": "Berlin - Exec Suite 52",
+    "model": "Logitech Rally Bar",
+    "description": "Primary exec suite system in Berlin",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-413",
+    "name": "Sydney - Training Room 52",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary training room system in Sydney",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-414",
+    "name": "San Francisco - Focus Room 52",
+    "model": "Poly Studio X50",
+    "description": "Primary focus room system in San Francisco",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-415",
+    "name": "Singapore - Boardroom 52",
+    "model": "Crestron Flex",
+    "description": "Primary boardroom system in Singapore",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-416",
+    "name": "Paris - Huddle 52",
+    "model": "Neat Bar Pro",
+    "description": "Primary huddle system in Paris",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-417",
+    "name": "London - Conf Room 53",
+    "model": "Logitech Rally Bar",
+    "description": "Primary conf room system in London",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-418",
+    "name": "New York - Exec Suite 53",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary exec suite system in New York",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-419",
+    "name": "Tokyo - Training Room 53",
+    "model": "Poly Studio X50",
+    "description": "Primary training room system in Tokyo",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-420",
+    "name": "Berlin - Focus Room 53",
+    "model": "Crestron Flex",
+    "description": "Primary focus room system in Berlin",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-421",
+    "name": "Sydney - Boardroom 53",
+    "model": "Neat Bar Pro",
+    "description": "Primary boardroom system in Sydney",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-422",
+    "name": "San Francisco - Huddle 53",
+    "model": "Logitech Rally Bar",
+    "description": "Primary huddle system in San Francisco",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-423",
+    "name": "Singapore - Conf Room 53",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary conf room system in Singapore",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-424",
+    "name": "Paris - Exec Suite 53",
+    "model": "Poly Studio X50",
+    "description": "Primary exec suite system in Paris",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-425",
+    "name": "London - Training Room 54",
+    "model": "Crestron Flex",
+    "description": "Primary training room system in London",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-426",
+    "name": "New York - Focus Room 54",
+    "model": "Neat Bar Pro",
+    "description": "Primary focus room system in New York",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-427",
+    "name": "Tokyo - Boardroom 54",
+    "model": "Logitech Rally Bar",
+    "description": "Primary boardroom system in Tokyo",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-428",
+    "name": "Berlin - Huddle 54",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary huddle system in Berlin",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-429",
+    "name": "Sydney - Conf Room 54",
+    "model": "Poly Studio X50",
+    "description": "Primary conf room system in Sydney",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-430",
+    "name": "San Francisco - Exec Suite 54",
+    "model": "Crestron Flex",
+    "description": "Primary exec suite system in San Francisco",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-431",
+    "name": "Singapore - Training Room 54",
+    "model": "Neat Bar Pro",
+    "description": "Primary training room system in Singapore",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-432",
+    "name": "Paris - Focus Room 54",
+    "model": "Logitech Rally Bar",
+    "description": "Primary focus room system in Paris",
+    "status": "deactivated"
+  },
+  {
+    "id": "dev-433",
+    "name": "London - Boardroom 55",
+    "model": "Cisco Webex Room Kit",
+    "description": "Primary boardroom system in London",
+    "status": "deactivated"
+  }
+]

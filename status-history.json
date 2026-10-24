@@ -1,0 +1,394 @@
+[
+  {
+    "period": "2021-01",
+    "online": 130,
+    "inMeeting": 25,
+    "offline": 140,
+    "deactivated": 8
+  },
+  {
+    "period": "2021-02",
+    "online": 142,
+    "inMeeting": 24,
+    "offline": 144,
+    "deactivated": 8
+  },
+  {
+    "period": "2021-03",
+    "online": 151,
+    "inMeeting": 23,
+    "offline": 148,
+    "deactivated": 8
+  },
+  {
+    "period": "2021-04",
+    "online": 155,
+    "inMeeting": 20,
+    "offline": 151,
+    "deactivated": 8
+  },
+  {
+    "period": "2021-05",
+    "online": 153,
+    "inMeeting": 18,
+    "offline": 155,
+    "deactivated": 9
+  },
+  {
+    "period": "2021-06",
+    "online": 145,
+    "inMeeting": 16,
+    "offline": 159,
+    "deactivated": 9
+  },
+  {
+    "period": "2021-07",
+    "online": 134,
+    "inMeeting": 15,
+    "offline": 163,
+    "deactivated": 9
+  },
+  {
+    "period": "2021-08",
+    "online": 121,
+    "inMeeting": 15,
+    "offline": 167,
+    "deactivated": 9
+  },
+  {
+    "period": "2021-09",
+    "online": 111,
+    "inMeeting": 17,
+    "offline": 170,
+    "deactivated": 9
+  },
+  {
+    "period": "2021-10",
+    "online": 106,
+    "inMeeting": 19,
+    "offline": 174,
+    "deactivated": 9
+  },
+  {
+    "period": "2021-11",
+    "online": 106,
+    "inMeeting": 21,
+    "offline": 178,
+    "deactivated": 10
+  },
+  {
+    "period": "2021-12",
+    "online": 112,
+    "inMeeting": 24,
+    "offline": 182,
+    "deactivated": 10
+  },
+  {
+    "period": "2022-01",
+    "online": 123,
+    "inMeeting": 25,
+    "offline": 186,
+    "deactivated": 10
+  },
+  {
+    "period": "2022-02",
+    "online": 135,
+    "inMeeting": 25,
+    "offline": 189,
+    "deactivated": 10
+  },
+  {
+    "period": "2022-03",
+    "online": 146,
+    "inMeeting": 24,
+    "offline": 193,
+    "deactivated": 10
+  },
+  {
+    "period": "2022-04",
+    "online": 153,
+    "inMeeting": 22,
+    "offline": 197,
+    "deactivated": 10
+  },
+  {
+    "period": "2022-05",
+    "online": 155,
+    "inMeeting": 19,
+    "offline": 201,
+    "deactivated": 10
+  },
+  {
+    "period": "2022-06",
+    "online": 150,
+    "inMeeting": 17,
+    "offline": 205,
+    "deactivated": 11
+  },
+  {
+    "period": "2022-07",
+    "online": 140,
+    "inMeeting": 15,
+    "offline": 208,
+    "deactivated": 11
+  },
+  {
+    "period": "2022-08",
+    "online": 128,
+    "inMeeting": 15,
+    "offline": 212,
+    "deactivated": 11
+  },
+  {
+    "period": "2022-09",
+    "online": 116,
+    "inMeeting": 16,
+    "offline": 216,
+    "deactivated": 11
+  },
+  {
+    "period": "2022-10",
+    "online": 108,
+    "inMeeting": 18,
+    "offline": 220,
+    "deactivated": 11
+  },
+  {
+    "period": "2022-11",
+    "online": 105,
+    "inMeeting": 20,
+    "offline": 224,
+    "deactivated": 11
+  },
+  {
+    "period": "2022-12",
+    "online": 108,
+    "inMeeting": 22,
+    "offline": 227,
+    "deactivated": 11
+  },
+  {
+    "period": "2023-01",
+    "online": 117,
+    "inMeeting": 24,
+    "offline": 231,
+    "deactivated": 12
+  },
+  {
+    "period": "2023-02",
+    "online": 128,
+    "inMeeting": 25,
+    "offline": 235,
+    "deactivated": 12
+  },
+  {
+    "period": "2023-03",
+    "online": 141,
+    "inMeeting": 25,
+    "offline": 239,
+    "deactivated": 12
+  },
+  {
+    "period": "2023-04",
+    "online": 150,
+    "inMeeting": 23,
+    "offline": 243,
+    "deactivated": 12
+  },
+  {
+    "period": "2023-05",
+    "online": 155,
+    "inMeeting": 21,
+    "offline": 246,
+    "deactivated": 12
+  },
+  {
+    "period": "2023-06",
+    "online": 153,
+    "inMeeting": 18,
+    "offline": 250,
+    "deactivated": 12
+  },
+  {
+    "period": "2023-07",
+    "online": 146,
+    "inMeeting": 16,
+    "offline": 254,
+    "deactivated": 13
+  },
+  {
+    "period": "2023-08",
+    "online": 135,
+    "inMeeting": 15,
+    "offline": 258,
+    "deactivated": 13
+  },
+  {
+    "period": "2023-09",
+    "online": 123,
+    "inMeeting": 15,
+    "offline": 262,
+    "deactivated": 13
+  },
+  {
+    "period": "2023-10",
+    "online": 112,
+    "inMeeting": 16,
+    "offline": 265,
+    "deactivated": 13
+  },
+  {
+    "period": "2023-11",
+    "online": 106,
+    "inMeeting": 19,
+    "offline": 269,
+    "deactivated": 13
+  },
+  {
+    "period": "2023-12",
+    "online": 106,
+    "inMeeting": 21,
+    "offline": 273,
+    "deactivated": 13
+  },
+  {
+    "period": "2024-01",
+    "online": 111,
+    "inMeeting": 23,
+    "offline": 277,
+    "deactivated": 13
+  },
+  {
+    "period": "2024-02",
+    "online": 121,
+    "inMeeting": 25,
+    "offline": 281,
+    "deactivated": 14
+  },
+  {
+    "period": "2024-03",
+    "online": 134,
+    "inMeeting": 25,
+    "offline": 284,
+    "deactivated": 14
+  },
+  {
+    "period": "2024-04",
+    "online": 145,
+    "inMeeting": 24,
+    "offline": 288,
+    "deactivated": 14
+  },
+  {
+    "period": "2024-05",
+    "online": 153,
+    "inMeeting": 22,
+    "offline": 292,
+    "deactivated": 14
+  },
+  {
+    "period": "2024-06",
+    "online": 155,
+    "inMeeting": 20,
+    "offline": 296,
+    "deactivated": 14
+  },
+  {
+    "period": "2024-07",
+    "online": 151,
+    "inMeeting": 17,
+    "offline": 300,
+    "deactivated": 14
+  },
+  {
+    "period": "2024-08",
+    "online": 142,
+    "inMeeting": 16,
+    "offline": 303,
+    "deactivated": 14
+  },
+  {
+    "period": "2024-09",
+    "online": 130,
+    "inMeeting": 15,
+    "offline": 307,
+    "deactivated": 15
+  },
+  {
+    "period": "2024-10",
+    "online": 118,
+    "inMeeting": 16,
+    "offline": 311,
+    "deactivated": 15
+  },
+  {
+    "period": "2024-11",
+    "online": 109,
+    "inMeeting": 17,
+    "offline": 315,
+    "deactivated": 15
+  },
+  {
+    "period": "2024-12",
+    "online": 105,
+    "inMeeting": 20,
+    "offline": 319,
+    "deactivated": 15
+  },
+  {
+    "period": "2025-01",
+    "online": 107,
+    "inMeeting": 22,
+    "offline": 322,
+    "deactivated": 15
+  },
+  {
+    "period": "2025-02",
+    "online": 115,
+    "inMeeting": 24,
+    "offline": 326,
+    "deactivated": 15
+  },
+  {
+    "period": "2025-03",
+    "online": 127,
+    "inMeeting": 25,
+    "offline": 330,
+    "deactivated": 16
+  },
+  {
+    "period": "2025-04",
+    "online": 139,
+    "inMeeting": 25,
+    "offline": 334,
+    "deactivated": 16
+  },
+  {
+    "period": "2025-05",
+    "online": 149,
+    "inMeeting": 23,
+    "offline": 338,
+    "deactivated": 16
+  },
+  {
+    "period": "2025-06",
+    "online": 154,
+    "inMeeting": 21,
+    "offline": 341,
+    "deactivated": 16
+  },
+  {
+    "period": "2025-07",
+    "online": 154,
+    "inMeeting": 19,
+    "offline": 345,
+    "deactivated": 16
+  },
+  {
+    "period": "2025-08",
+    "online": 147,
+    "inMeeting": 16,
+    "offline": 349,
+    "deactivated": 16
+  }
+]
