@@ -1,4 +1,23 @@
-import type { CreateDeviceInput, Device, UpdateDeviceInput } from "../shared/schemas/device";
+import { encodeCursor, type CursorPayload } from "../shared/cursor";
+import type {
+  CreateDeviceInput,
+  CursorDevices,
+  Device,
+  DeviceCursorQuery,
+  DeviceExportQuery,
+  DeviceListQuery,
+  DeviceSummary,
+  PaginatedDevices,
+  UpdateDeviceInput,
+} from "../shared/schemas/device";
+import {
+  facetSummary,
+  filterDevices,
+  keysetWindow,
+  offsetWindow,
+  sortDevices,
+  sortKeyOf,
+} from "./querying";
 import { seededDevices } from "./seed/devices";
 
 export interface DeviceRepository {
@@ -9,6 +28,14 @@ export interface DeviceRepository {
   update(id: string, input: UpdateDeviceInput): Device | undefined;
   remove(id: string): boolean;
   reset(): void;
+  /** Offset mode: a window plus the facts about the whole result. */
+  query(query: DeviceListQuery): PaginatedDevices;
+  /** Cursor mode: no offset scan and no `COUNT(*)` unless asked. */
+  queryAfter(query: DeviceCursorQuery, cursor: CursorPayload | null): CursorDevices;
+  /** Facet counts for the summary cards (status is ignored by design). */
+  summary(filters: { q?: string | undefined; model?: string | undefined }): DeviceSummary;
+  /** Every matching row, ordered — used by the CSV export in bounded batches. */
+  all(query: DeviceExportQuery): Device[];
 }
 
 /**
@@ -63,6 +90,44 @@ export function createDeviceRepository(seed: Device[]): DeviceRepository {
       return devices.length < before;
     },
     reset: load,
+
+    query: (query) => {
+      const sorted = sortDevices(filterDevices(devices, query), query.sort, query.order);
+      const { items, total, totalPages } = offsetWindow(sorted, query.page, query.pageSize);
+      return {
+        items: items.map((device) => ({ ...device })),
+        page: query.page,
+        pageSize: query.pageSize,
+        total,
+        totalPages,
+      };
+    },
+
+    queryAfter: (query, cursor) => {
+      const sorted = sortDevices(filterDevices(devices, query), query.sort, query.order);
+      const { items, last, hasMore } = keysetWindow(sorted, cursor, query, query.limit);
+      const nextCursor =
+        hasMore && last
+          ? encodeCursor({
+              v: 1,
+              sort: query.sort,
+              order: query.order,
+              q: query.q ?? "",
+              status: query.status ?? "",
+              model: query.model ?? "",
+              key: sortKeyOf(last, query.sort),
+              id: last.id,
+            })
+          : null;
+      return { items: items.map((device) => ({ ...device })), nextCursor };
+    },
+
+    summary: (filters) => facetSummary(devices, filters),
+
+    all: (query) =>
+      sortDevices(filterDevices(devices, query), query.sort, query.order).map((device) => ({
+        ...device,
+      })),
   };
 }
 

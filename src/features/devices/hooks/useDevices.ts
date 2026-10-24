@@ -1,32 +1,43 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { fetchDeviceHistory, fetchDevices } from "../api/deviceApi";
+import {
+  fetchDeviceHistory,
+  fetchDevices,
+  fetchDeviceSummary,
+  type DeviceListParams,
+  type DeviceSummaryFilters,
+} from "../api/deviceApi";
 import { deviceKeys } from "../api/queryKeys";
-import { summarizeDevices } from "./summarizeDevices";
 
 const LIST_OPTIONS = {
-  staleTime: 30_000,
+  staleTime: 15_000,
   gcTime: 10 * 60_000,
   refetchOnWindowFocus: false,
   retry: 1,
 } as const;
 
 /**
- * The device list. The summary is a `select` over the same cached array, so
- * the counts on the cards can never disagree with the rows in the table.
+ * The device list for a specific window. Pages are cached per key so moving
+ * back to a previously visited page is instant; `placeholderData` is not used
+ * because `useSuspenseQuery` disallows it (and we keep the previous window by
+ * key identity instead).
  */
-export function useDevicesQuery() {
+export function useDevicesQuery(params: DeviceListParams) {
   return useSuspenseQuery({
-    queryKey: deviceKeys.list(),
-    queryFn: ({ signal }) => fetchDevices(signal),
+    queryKey: deviceKeys.list(params),
+    queryFn: ({ signal }) => fetchDevices(params, signal),
     ...LIST_OPTIONS,
   });
 }
 
-export function useDeviceSummaryQuery() {
+/**
+ * Facet counts for the summary cards. The server ignores the status filter,
+ * so the counts stay useful while a card is selected (D-019). We still pass
+ * the name filter so the facets match the search.
+ */
+export function useDeviceSummaryQuery(filters: DeviceSummaryFilters) {
   return useSuspenseQuery({
-    queryKey: deviceKeys.list(),
-    queryFn: ({ signal }) => fetchDevices(signal),
-    select: summarizeDevices,
+    queryKey: deviceKeys.summary(filters),
+    queryFn: ({ signal }) => fetchDeviceSummary(filters, signal),
     ...LIST_OPTIONS,
   });
 }

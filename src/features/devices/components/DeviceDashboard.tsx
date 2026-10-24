@@ -1,7 +1,14 @@
 import { lazy, Suspense, useState } from "react";
 import { ErrorBoundary } from "../../../app/ErrorBoundary";
 import { Skeleton } from "../../../components/Skeleton/Skeleton";
-import type { Device, DeviceStatus } from "../../../../shared/schemas/device";
+import {
+  DEFAULT_PAGE_SIZE,
+  type Device,
+  type DeviceSort,
+  type DeviceStatus,
+  type SortOrder,
+} from "../../../../shared/schemas/device";
+import { useDebouncedValue } from "../hooks/useDebouncedValue";
 import { useDeviceMutations } from "../hooks/useDeviceMutations";
 import { useUrlParam } from "../hooks/useUrlParam";
 // The chart pulls in Recharts, which is a third of the bundle. It lives below
@@ -24,14 +31,27 @@ function isDeviceStatus(value: string): value is DeviceStatus {
   );
 }
 
+function isDeviceSort(value: string): value is DeviceSort {
+  return value === "name" || value === "model" || value === "status";
+}
+
+function isSortOrder(value: string): value is SortOrder {
+  return value === "asc" || value === "desc";
+}
+
 /**
  * The dashboard is a composition of three independent sections. Each one owns
  * its own Suspense + Error Boundary, so a failing chart cannot take the fleet
- * table down with it.
+ * table down with it. Filters, sort and paging live in the URL so views can be
+ * shared; the search input is debounced before it hits the server.
  */
 export function DeviceDashboard() {
   const [statusParam, setStatusParam] = useUrlParam("status", ALL);
-  const [query, setQuery] = useUrlParam("q", "");
+  const [query, setQueryParam] = useUrlParam("q", "");
+  const [sortParam, setSortParam] = useUrlParam("sort", "name");
+  const [orderParam, setOrderParam] = useUrlParam("order", "asc");
+  const [pageParam, setPageParam] = useUrlParam("page", "1");
+  const [pageSizeParam, setPageSizeParam] = useUrlParam("pageSize", String(DEFAULT_PAGE_SIZE));
   const [formState, setFormState] = useState<
     { mode: "closed" } | { mode: "open"; device: Device | null }
   >({
@@ -40,6 +60,33 @@ export function DeviceDashboard() {
   const mutations = useDeviceMutations();
 
   const status: DeviceStatus | typeof ALL = isDeviceStatus(statusParam) ? statusParam : ALL;
+  const sort: DeviceSort = isDeviceSort(sortParam) ? sortParam : "name";
+  const order: SortOrder = isSortOrder(orderParam) ? orderParam : "asc";
+  const page = Math.max(1, Number.parseInt(pageParam, 10) || 1);
+  const pageSize = Math.min(
+    100,
+    Math.max(1, Number.parseInt(pageSizeParam, 10) || DEFAULT_PAGE_SIZE),
+  );
+  const debouncedQuery = useDebouncedValue(query, 300);
+
+  const setStatus = (next: DeviceStatus | typeof ALL) => {
+    setStatusParam(next === ALL ? "" : next);
+    setPageParam("1");
+  };
+  const setSort = (nextSort: DeviceSort, nextOrder: SortOrder) => {
+    setSortParam(nextSort);
+    setOrderParam(nextOrder);
+    setPageParam("1");
+  };
+  const setPage = (nextPage: number) => setPageParam(String(nextPage));
+  const setPageSize = (nextSize: number) => {
+    setPageSizeParam(String(nextSize));
+    setPageParam("1");
+  };
+  const setQuery = (nextQuery: string) => {
+    setQueryParam(nextQuery);
+    setPageParam("1");
+  };
 
   return (
     <div className={styles.dashboard}>
@@ -51,7 +98,10 @@ export function DeviceDashboard() {
           <Suspense fallback={<SummaryCardsSkeleton />}>
             <SummaryCards
               activeStatus={status}
-              onStatusChange={(next) => setStatusParam(next === ALL ? "" : next)}
+              onStatusChange={setStatus}
+              query={debouncedQuery}
+              sort={sort}
+              order={order}
             />
           </Suspense>
         </ErrorBoundary>
@@ -66,11 +116,20 @@ export function DeviceDashboard() {
           onQueryChange={setQuery}
           onAddDevice={() => setFormState({ mode: "open", device: null })}
         />
-        <ErrorBoundary resetKey={`${query}:${status}`}>
+        <ErrorBoundary
+          resetKey={`${debouncedQuery}:${status}:${sort}:${order}:${page}:${pageSize}`}
+        >
           <Suspense fallback={<TableSkeleton />}>
             <DeviceTableSection
-              query={query}
+              query={debouncedQuery}
               status={status}
+              sort={sort}
+              order={order}
+              onSortChange={setSort}
+              page={page}
+              pageSize={pageSize}
+              onPageChange={setPage}
+              onPageSizeChange={setPageSize}
               mutations={mutations}
               onEdit={(device) => setFormState({ mode: "open", device })}
             />

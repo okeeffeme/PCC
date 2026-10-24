@@ -80,16 +80,21 @@ script, and the explicit task was removed.
 ## What it does
 
 - **Device list** — 433 devices, sortable by name/model/status, filtered by name (case-insensitive),
-  paginated 25 at a time.
-- **Status summary** — total plus a count per status, derived from the same cached array the table
-  renders, so the numbers can never disagree with the rows. Each card is also a status filter.
+  paginated **by the server** (25/50/100 per page, default 25) with a page-size control.
+- **Status summary** — total plus a count per status from a server facet aggregate that ignores the
+  status filter, so the cards stay useful while one is selected. Each card is also a status filter;
+  the exact filtered count comes from the list's `total`.
+- **CSV export** — the current filter/sort as a streamed download (`?format=csv`), never built in
+  the browser.
 - **Add / edit / remove** — a validated form (react-hook-form + zod) with inline field errors, a
   duplicate-name error mapped back onto the name field, and a confirmation step before removal.
-  Writes are optimistic: the cache updates immediately, rolls back on failure, and reconciles with
-  the server afterwards.
+  Edits and deletes are optimistic across every cached page, roll back on failure, and reconcile
+  on settle; a create invalidates instead, because a new name has no known sort position.
 - **Status history** — the 56 monthly points as a stacked area chart, with the same numbers exposed
   in a visually-hidden table for screen-reader users.
-- **Filters live in the URL** — `?q=…&status=…`, so a filtered view can be shared or reloaded.
+- **Query state lives in the URL** — `?q=…&status=…&sort=…&order=…&page=…&pageSize=…`, so a
+  filtered, sorted page can be shared or reloaded. Search is debounced (300 ms); changing a filter
+  resets to page 1.
 
 ---
 
@@ -123,13 +128,25 @@ Rules the layout encodes:
 ### Data flow
 
 ```
-useSuspenseQuery(deviceKeys.list())  ──►  fetch('/api/devices')  ──►  zod-validated Device[]
-        │
-        ├─► <DataTable>            (rows, sorting, paging, name filter)
-        └─► select(summarizeDevices)  ──►  <SummaryCards>  (counts + status filters)
+URL (q, status, sort, order, page, pageSize)
+        │  debounced q
+        ▼
+useSuspenseQuery(deviceKeys.list(params))  ──►  GET /api/devices?page&pageSize&…  ──►  PaginatedDevices
+        │                                                                               { items, page, pageSize, total, totalPages }
+        └─► <DataTable manualSorting manualPagination>  (server window + total)
+
+useSuspenseQuery(deviceKeys.summary(filters))  ──►  GET /api/devices/summary?q&model  ──►  facets
+        └─► <SummaryCards>  (counts as status filters + CSV link)
 ```
 
-One request, two views. The summary is a `select` over the cached list, not a second endpoint call.
+Two queries, each cached by its own key: the table asks for one window, the cards ask for the
+aggregate. The summary ignores `status` on purpose (a facet), so selecting a status does not
+collapse the other cards. The list's `total` is the authoritative count for the selected filter.
+
+**Pagination contract.** Offset mode (`page`/`pageSize`) is what the UI uses. The same endpoint
+also supports cursor mode (`limit` + optional `cursor`, keyset, `409 stale_cursor` if the filter
+changes) and streams CSV. See [D-018](./docs/decision-log.md#d-018) and
+[D-019](./docs/decision-log.md#d-019).
 
 ---
 
@@ -138,19 +155,19 @@ One request, two views. The summary is a `select` over the cached list, not a se
 Every trade-off — with its cost, its benefit and what would reverse it — lives in
 **[`docs/decision-log.md`](./docs/decision-log.md)**. The short version:
 
-| Topic            | Choice                         | One-line why                                                   |
-| ---------------- | ------------------------------ | -------------------------------------------------------------- |
-| Toolchain        | Vite+ (`vp check`, `vp test`)  | One config, one command instead of four tools                  |
-| Runtime          | Vite SPA + Express API         | No SSR needed; the API boundary is the thing under test        |
-| Server state     | TanStack Query v5              | Cache, staleness, invalidation and rollback for free           |
-| Server framework | Express 5                      | Familiarity wins when the options are equivalent               |
-| API style        | REST                           | Flat data, two read shapes, no codegen step                    |
-| Forms            | react-hook-form + zod resolver | Field-level validation the shared schema already describes     |
-| Table            | TanStack Table v9              | Sorting/filtering/paging done properly, behind our own wrapper |
-| Charting         | Recharts                       | React-native, and wrapped for the a11y contract                |
-| Styling          | CSS Modules + `tokens.css`     | Scoped, zero runtime, one file to re-theme                     |
-| Types            | TypeScript 6.0.3               | Editor-friendly; `vp check` type-checks on tsgo (TS 7)         |
-| Tests            | Vitest 5 + RTL + MSW           | The network layer is the seam; queries are role/name based     |
+| Topic            | Choice                         | One-line why                                                    |
+| ---------------- | ------------------------------ | --------------------------------------------------------------- |
+| Toolchain        | Vite+ (`vp check`, `vp test`)  | One config, one command instead of four tools                   |
+| Runtime          | Vite SPA + Express API         | No SSR needed; the API boundary is the thing under test         |
+| Server state     | TanStack Query v5              | Cache, staleness, invalidation and rollback for free            |
+| Server framework | Express 5                      | Familiarity wins when the options are equivalent                |
+| API style        | REST                           | Flat data, two read shapes, no codegen step                     |
+| Forms            | react-hook-form + zod resolver | Field-level validation the shared schema already describes      |
+| Table            | TanStack Table v9              | Manual sort/paging over a server window, behind our own wrapper |
+| Charting         | Recharts                       | React-native, and wrapped for the a11y contract                 |
+| Styling          | CSS Modules + `tokens.css`     | Scoped, zero runtime, one file to re-theme                      |
+| Types            | TypeScript 6.0.3               | Editor-friendly; `vp check` type-checks on tsgo (TS 7)          |
+| Tests            | Vitest 5 + RTL + MSW           | The network layer is the seam; queries are role/name based      |
 
 The build plan, the API contract, the layout rules and the risk list are in
 **[`docs/implementation-plan.md`](./docs/implementation-plan.md)**.
@@ -190,10 +207,12 @@ src/components/StatusHistoryChart/StatusHistoryChart.test.tsx
 src/features/devices/components/DeviceDashboard.test.tsx
                                                        filter by name, filter by status, add,
                                                        duplicate-name error, remove
-server/app.test.ts                                     the API over real HTTP (12 cases)
+server/app.test.ts                                     the API over real HTTP (22 cases:
+                                                       offset paging, full cursor walk, CSV,
+                                                       facet summary + ETag, validation)
 ```
 
-41 tests across 13 files. `vp test` runs all of them. The client tests go through MSW at the network
+51 tests across 13 files. `vp test` runs all of them. The client tests go through MSW at the network
 layer (same URL contract as the server); the API tests hit a real Express instance on an ephemeral
 port.
 
@@ -201,16 +220,20 @@ port.
 
 ## Known limitations / what I'd do next
 
-1. **Server-side pagination.** 433 rows fit in one response; at ~100k rows the list endpoint needs
-   `?page=&pageSize=` and the table switches to manual pagination. The query-key factory is already
-   shaped for it.
-2. **No auth.** Mutations assume an authenticated operator; the real model (who may deactivate a
+1. **Deep offset pages.** Offset pagination is what the UI needs, and cursor mode already exists
+   for exports. At very deep offsets (millions of rows) the `OFFSET` scan becomes the cost, so the
+   table would switch to the cursor contract; the schemas and repository seam are ready.
+2. **Batch import.** Documented but not built: `POST /api/devices/imports` → `202` + job id,
+   progress polling, per-row results, `Idempotency-Key`. A single-row create cannot be made
+   optimistic cheaply; a batch job needs a job resource, not a bigger POST.
+3. **No auth.** Mutations assume an authenticated operator; the real model (who may deactivate a
    device) is an open question for the reviewer.
-3. **Live status.** The client polls nothing — `staleTime` is 30s and there is no push channel.
-   Webhooks/SSE would change the cache strategy, not the components.
-4. **Edit is deliberately thin.** It reuses the add form, but a real product would show device
+4. **Live status.** The client polls nothing — `staleTime` is 15s for lists and there is no push
+   channel. Webhooks/SSE would change the cache strategy, not the components.
+5. **Edit is deliberately thin.** It reuses the add form, but a real product would show device
    metadata (firmware, room, last seen) that the brief's data does not contain.
-5. **E2E.** Playwright is the first thing I would add — the accessibility and flow guarantees are
+6. **E2E.** Playwright is the first thing I would add — the accessibility and flow guarantees are
    currently covered at the component and API level.
-6. **The mock API is in-memory.** Restarting the server resets the fleet; a real backend would own
-   persistence.
+7. **The mock API is in-memory.** Restarting the server resets the fleet; a real backend would own
+   persistence and the aggregate would be one SQL `GROUP BY` (the logic is already isolated in
+   `server/querying.ts` for exactly that swap).

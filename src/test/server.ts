@@ -1,6 +1,7 @@
 import { http, HttpResponse } from "msw";
 import { setupServer } from "msw/node";
 import { DEVICE_MODELS, type Device } from "../../shared/schemas/device";
+import { filterDevices, sortDevices, offsetWindow, facetSummary } from "../../server/querying";
 import type { HistoryPoint } from "../../shared/schemas/history";
 
 /**
@@ -54,19 +55,51 @@ export const history: HistoryPoint[] = [
   { period: "2025-08", online: 180, inMeeting: 120, offline: 85, deactivated: 48 },
 ];
 
-function summary(list: Device[]) {
-  return {
-    total: list.length,
-    online: list.filter((device) => device.status === "online").length,
-    inMeeting: list.filter((device) => device.status === "inMeeting").length,
-    offline: list.filter((device) => device.status === "offline").length,
-    deactivated: list.filter((device) => device.status === "deactivated").length,
-  };
-}
-
 export const handlers = [
-  http.get("/api/devices", () => HttpResponse.json(devices)),
-  http.get("/api/devices/summary", () => HttpResponse.json(summary(devices))),
+  http.get("/api/devices", ({ request }) => {
+    const url = new URL(request.url);
+    const q = url.searchParams.get("q") ?? undefined;
+    const status = (url.searchParams.get("status") as Device["status"] | null) ?? undefined;
+    const model = url.searchParams.get("model") ?? undefined;
+    const sort = (url.searchParams.get("sort") as "name" | "model" | "status") ?? "name";
+    const order = (url.searchParams.get("order") as "asc" | "desc") ?? "asc";
+    const page = Number(url.searchParams.get("page") ?? "1");
+    const pageSize = Number(url.searchParams.get("pageSize") ?? "25");
+
+    if (url.searchParams.get("format") === "csv") {
+      const rows = sortDevices(filterDevices(devices, { q, status, model }), sort, order);
+      const csv = [
+        "id,name,model,status,description",
+        ...rows.map(
+          (d) =>
+            `"${d.id}","${d.name.replaceAll('"', '""')}","${d.model.replaceAll('"', '""')}","${d.status}","${d.description.replaceAll('"', '""')}"`,
+        ),
+      ].join("\n");
+      return new HttpResponse(csv, {
+        headers: {
+          "Content-Type": "text/csv; charset=utf-8",
+          "Content-Disposition": 'attachment; filename="devices.csv"',
+        },
+      });
+    }
+
+    const filtered = filterDevices(devices, { q, status, model });
+    const sorted = sortDevices(filtered, sort, order);
+    const window = offsetWindow(sorted, page, pageSize);
+    return HttpResponse.json({
+      items: window.items,
+      page,
+      pageSize,
+      total: window.total,
+      totalPages: window.totalPages,
+    });
+  }),
+  http.get("/api/devices/summary", ({ request }) => {
+    const url = new URL(request.url);
+    const q = url.searchParams.get("q") ?? undefined;
+    const model = url.searchParams.get("model") ?? undefined;
+    return HttpResponse.json(facetSummary(devices, { q, model }));
+  }),
   http.get("/api/devices/history", () => HttpResponse.json(history)),
   http.post("/api/devices", async ({ request }) => {
     const body = (await request.json()) as Partial<Device>;

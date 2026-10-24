@@ -32,7 +32,7 @@ afterEach(() => {
   cleanup();
   server.resetHandlers();
   resetDevices();
-  // Filters live in the URL, so the URL is state too.
+  // Filters/pagination/sort live in the URL, so the URL is state too.
   window.history.replaceState(null, "", "/");
 });
 

@@ -3,9 +3,14 @@ import { ApiErrorSchema } from "../../../../shared/schemas/api";
 import {
   DeviceSchema,
   DeviceSummarySchema,
+  PaginatedDevicesSchema,
   type CreateDeviceInput,
   type Device,
+  type DeviceSort,
+  type DeviceStatus,
   type DeviceSummary,
+  type PaginatedDevices,
+  type SortOrder,
   type UpdateDeviceInput,
 } from "../../../../shared/schemas/device";
 import { HistoryResponseSchema, type HistoryPoint } from "../../../../shared/schemas/history";
@@ -58,17 +63,67 @@ async function request<T>(path: string, schema: z.ZodType<T>, init?: RequestInit
   return schema.parse(await response.json());
 }
 
-export function fetchDevices(signal?: AbortSignal): Promise<Device[]> {
-  return request("/devices", z.array(DeviceSchema), { signal });
+/** The filters/sort shared by the list and the export. */
+export interface DeviceFilters {
+  q?: string;
+  status?: DeviceStatus;
+  model?: string;
+  sort: DeviceSort;
+  order: SortOrder;
+}
+
+export interface DeviceListParams extends DeviceFilters {
+  page: number;
+  pageSize: number;
+}
+
+/** The summary is faceted: it takes the name filter, never the status filter. */
+export interface DeviceSummaryFilters {
+  q?: string;
+  model?: string;
+}
+
+function filterParams(filters: DeviceFilters): URLSearchParams {
+  const search = new URLSearchParams();
+  if (filters.q) search.set("q", filters.q);
+  if (filters.status) search.set("status", filters.status);
+  if (filters.model) search.set("model", filters.model);
+  search.set("sort", filters.sort);
+  search.set("order", filters.order);
+  return search;
+}
+
+export function fetchDevices(
+  params: DeviceListParams,
+  signal?: AbortSignal,
+): Promise<PaginatedDevices> {
+  const search = filterParams(params);
+  search.set("page", String(params.page));
+  search.set("pageSize", String(params.pageSize));
+  return request(`/devices?${search.toString()}`, PaginatedDevicesSchema, { signal });
 }
 
 /**
- * The summary is derived from the cached list in the UI (see `summarizeDevices`),
- * so the counts and the rows can never disagree. This endpoint stays part of the
- * public API for anything that only needs the numbers.
+ * The summary is a server aggregate over the same filters — one `GROUP BY`, not
+ * a second copy of the list. It ignores the status filter on purpose (D-019):
+ * the carts stay navigation while one status is selected.
  */
-export function fetchDeviceSummary(): Promise<DeviceSummary> {
-  return request("/devices/summary", DeviceSummarySchema);
+export function fetchDeviceSummary(
+  filters: DeviceSummaryFilters,
+  signal?: AbortSignal,
+): Promise<DeviceSummary> {
+  const search = new URLSearchParams();
+  if (filters.q) search.set("q", filters.q);
+  if (filters.model) search.set("model", filters.model);
+  const suffix = search.size > 0 ? `?${search.toString()}` : "";
+  return request(`/devices/summary${suffix}`, DeviceSummarySchema, { signal });
+}
+
+/** The export streams from the server; the browser never has to hold the set. */
+export function exportDevicesHref(filters: DeviceFilters): string {
+  const search = filterParams(filters);
+  search.set("format", "csv");
+  return `${API_BASE}/devices?${search.toString()}`;
 }
 
 export function fetchDeviceHistory(): Promise<HistoryPoint[]> {

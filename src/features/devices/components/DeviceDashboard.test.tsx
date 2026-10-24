@@ -7,9 +7,8 @@ import { renderWithProviders } from "../../../test/render";
 async function renderDashboard() {
   const user = userEvent.setup();
   renderWithProviders(<DeviceDashboard />);
-  // The table and the cards share one cached list, so waiting for a row is
-  // enough to know the whole section is ready.
-  await screen.findByRole("row", { name: /Berlin - Exec Suite 1/ });
+  // The table and the cards share the same server data; wait for the first row.
+  await screen.findByRole("row", { name: /Berlin - Exec Suite 1/ }, { timeout: 5000 });
   return { user };
 }
 
@@ -29,10 +28,17 @@ describe("DeviceDashboard", () => {
 
     await user.type(screen.getByLabelText("Filter by name"), "Lisbon");
 
-    await waitFor(() => {
-      expect(screen.queryByRole("row", { name: /Berlin - Exec Suite 1/ })).not.toBeInTheDocument();
-    });
-    expect(screen.getByRole("row", { name: /Lisbon - Focus Room 2/ })).toBeInTheDocument();
+    await waitFor(
+      () => {
+        expect(
+          screen.queryByRole("row", { name: /Berlin - Exec Suite 1/ }),
+        ).not.toBeInTheDocument();
+      },
+      { timeout: 5000 },
+    );
+    expect(
+      await screen.findByRole("row", { name: /Lisbon - Focus Room 2/ }, { timeout: 5000 }),
+    ).toBeInTheDocument();
   });
 
   it("filters the table by status from the summary cards", async () => {
@@ -40,10 +46,17 @@ describe("DeviceDashboard", () => {
 
     await user.click(screen.getByRole("button", { name: /Online/ }));
 
-    await waitFor(() => {
-      expect(screen.queryByRole("row", { name: /Lisbon - Focus Room 2/ })).not.toBeInTheDocument();
-    });
-    expect(screen.getByRole("row", { name: /Berlin - Exec Suite 1/ })).toBeInTheDocument();
+    await waitFor(
+      () => {
+        expect(
+          screen.queryByRole("row", { name: /Lisbon - Focus Room 2/ }),
+        ).not.toBeInTheDocument();
+      },
+      { timeout: 5000 },
+    );
+    expect(
+      await screen.findByRole("row", { name: /Berlin - Exec Suite 1/ }, { timeout: 5000 }),
+    ).toBeInTheDocument();
   });
 
   it("adds a device through the form", async () => {

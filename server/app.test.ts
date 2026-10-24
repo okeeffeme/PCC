@@ -1,10 +1,12 @@
 import type { Server } from "node:http";
 import { afterAll, beforeAll, describe, expect, it } from "vite-plus/test";
+import type { PaginatedDevices } from "../shared/schemas/device";
 import { createApp } from "./app";
 
 /**
  * The API is exercised over real HTTP — the same routes the browser calls.
  * The app is created per test file so the in-memory repository starts clean.
+ * Read-only tests run before the write tests, because writes are stateful.
  */
 
 let server: Server;
@@ -24,34 +26,120 @@ afterAll(() => {
   server.close();
 });
 
-describe("GET /api/devices", () => {
-  it("returns the seeded fleet", async () => {
-    const response = await fetch(`${baseUrl}/api/devices`);
+async function list(path = ""): Promise<PaginatedDevices> {
+  const response = await fetch(`${baseUrl}/api/devices${path}`);
+  expect(response.status).toBe(200);
+  return (await response.json()) as PaginatedDevices;
+}
 
-    expect(response.status).toBe(200);
-    const devices = (await response.json()) as { id: string; name: string }[];
-    expect(devices).toHaveLength(433);
-    expect(devices[0]).toMatchObject({ id: expect.any(String), name: expect.any(String) });
+describe("GET /api/devices (offset mode)", () => {
+  it("returns a window plus the facts about the whole result", async () => {
+    const page = await list();
+
+    expect(page.page).toBe(1);
+    expect(page.pageSize).toBe(25);
+    expect(page.total).toBe(433);
+    expect(page.totalPages).toBe(18);
+    expect(page.items).toHaveLength(25);
+    expect(page.items[0]).toMatchObject({ id: expect.any(String), name: expect.any(String) });
   });
 
-  it("filters by name and status", async () => {
-    const response = await fetch(`${baseUrl}/api/devices?q=berlin&status=online`);
-    const devices = (await response.json()) as { name: string; status: string }[];
+  it("walks consecutive pages without duplicating or skipping rows", async () => {
+    const seen: string[] = [];
+    for (let page = 1; page <= 18; page += 1) {
+      const result = await list(`?page=${page}&pageSize=25`);
+      seen.push(...result.items.map((device) => device.id));
+    }
 
-    expect(devices.length).toBeGreaterThan(0);
-    for (const device of devices) {
+    expect(seen).toHaveLength(433);
+    expect(new Set(seen).size).toBe(433);
+  });
+
+  it("keeps a total order when the sort key has ties", async () => {
+    const seen: string[] = [];
+    for (let page = 1; page <= 5; page += 1) {
+      const result = await list(`?sort=status&pageSize=100&page=${page}`);
+      seen.push(...result.items.map((device) => device.id));
+    }
+
+    expect(seen).toHaveLength(433);
+    expect(new Set(seen).size).toBe(433);
+  });
+
+  it("filters by name and status together", async () => {
+    const page = await list("?q=berlin&status=online&pageSize=100");
+
+    expect(page.total).toBe(23);
+    expect(page.items).toHaveLength(23);
+    for (const device of page.items) {
       expect(device.name.toLowerCase()).toContain("berlin");
       expect(device.status).toBe("online");
     }
   });
 
-  it("rejects an unknown status", async () => {
-    const response = await fetch(`${baseUrl}/api/devices?status=exploded`);
+  it("returns an empty page beyond the end without losing the totals", async () => {
+    const page = await list("?page=999");
+
+    expect(page.items).toHaveLength(0);
+    expect(page.total).toBe(433);
+    expect(page.totalPages).toBe(18);
+  });
+
+  it("rejects an unknown status, sort, page and pageSize", async () => {
+    for (const query of ["?status=exploded", "?sort=colour", "?page=0", "?pageSize=1000"]) {
+      const response = await fetch(`${baseUrl}/api/devices${query}`);
+      expect(response.status, query).toBe(400);
+      const body = (await response.json()) as { error: string; issues: { path: string }[] };
+      expect(body.error).toBe("validation_failed");
+      expect(body.issues.length).toBeGreaterThan(0);
+    }
+  });
+});
+
+describe("GET /api/devices (cursor mode)", () => {
+  it("walks the result set with keyset pages and no overlaps", async () => {
+    const first = await fetch(`${baseUrl}/api/devices?limit=100`);
+    const firstPage = (await first.json()) as { items: { id: string }[]; nextCursor: string };
+    expect(firstPage.items).toHaveLength(100);
+    expect(firstPage.nextCursor).toEqual(expect.any(String));
+    expect(first.headers.get("link")).toContain('rel="next"');
+
+    const second = await fetch(
+      `${baseUrl}/api/devices?limit=100&cursor=${encodeURIComponent(firstPage.nextCursor)}`,
+    );
+    expect(second.status).toBe(200);
+    const secondPage = (await second.json()) as { items: { id: string }[]; nextCursor: string };
+    expect(secondPage.items).toHaveLength(100);
+
+    const firstIds = new Set(firstPage.items.map((device) => device.id));
+    expect(secondPage.items.some((device) => firstIds.has(device.id))).toBe(false);
+  });
+
+  it("rejects a cursor issued for a different filter", async () => {
+    const first = await fetch(`${baseUrl}/api/devices?limit=10`);
+    const { nextCursor } = (await first.json()) as { nextCursor: string };
+
+    const stale = await fetch(
+      `${baseUrl}/api/devices?limit=10&status=online&cursor=${encodeURIComponent(nextCursor)}`,
+    );
+
+    expect(stale.status).toBe(409);
+    const body = (await stale.json()) as { error: string };
+    expect(body.error).toBe("stale_cursor");
+  });
+
+  it("rejects an unreadable cursor", async () => {
+    const response = await fetch(`${baseUrl}/api/devices?cursor=not-a-cursor`);
 
     expect(response.status).toBe(400);
-    const body = (await response.json()) as { error: string; issues: { path: string }[] };
-    expect(body.error).toBe("validation_failed");
-    expect(body.issues[0]?.path).toBe("status");
+    expect(((await response.json()) as { error: string }).error).toBe("invalid_cursor");
+  });
+
+  it("refuses to mix page and cursor", async () => {
+    const response = await fetch(`${baseUrl}/api/devices?page=2&cursor=abc`);
+
+    expect(response.status).toBe(400);
+    expect(((await response.json()) as { error: string }).error).toBe("invalid_query");
   });
 });
 
@@ -60,11 +148,57 @@ describe("GET /api/devices/summary", () => {
     const response = await fetch(`${baseUrl}/api/devices/summary`);
     const summary = (await response.json()) as Record<string, number>;
 
-    expect(summary.total).toBe(433);
-    expect(summary.online).toBe(180);
-    expect(summary.inMeeting).toBe(120);
-    expect(summary.offline).toBe(85);
-    expect(summary.deactivated).toBe(48);
+    expect(summary).toEqual({
+      total: 433,
+      online: 180,
+      inMeeting: 120,
+      offline: 85,
+      deactivated: 48,
+    });
+  });
+
+  it("returns facets for the name filter and ignores the status filter", async () => {
+    const unfiltered = (await (
+      await fetch(`${baseUrl}/api/devices/summary?q=berlin`)
+    ).json()) as Record<string, number>;
+    const withStatus = (await (
+      await fetch(`${baseUrl}/api/devices/summary?q=berlin&status=online`)
+    ).json()) as Record<string, number>;
+
+    expect(unfiltered).toEqual({
+      total: 54,
+      online: 23,
+      inMeeting: 15,
+      offline: 10,
+      deactivated: 6,
+    });
+    expect(withStatus).toEqual(unfiltered);
+  });
+
+  it("revalidates with an ETag", async () => {
+    const first = await fetch(`${baseUrl}/api/devices/summary`);
+    const etag = first.headers.get("etag");
+    expect(etag).toEqual(expect.any(String));
+
+    const second = await fetch(`${baseUrl}/api/devices/summary`, {
+      headers: { "If-None-Match": etag! },
+    });
+    expect(second.status).toBe(304);
+  });
+});
+
+describe("GET /api/devices?format=csv", () => {
+  it("streams every matching row as an attachment", async () => {
+    const response = await fetch(`${baseUrl}/api/devices?format=csv&q=berlin`);
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("content-type")).toContain("text/csv");
+    expect(response.headers.get("content-disposition")).toContain("attachment");
+
+    const lines = (await response.text()).trim().split("\n");
+    expect(lines[0]).toBe("id,name,model,status,description");
+    expect(lines).toHaveLength(55);
+    expect(lines.slice(1).every((line) => line.includes("Berlin"))).toBe(true);
   });
 });
 
@@ -95,6 +229,10 @@ describe("POST /api/devices", () => {
     const created = (await response.json()) as { id: string; name: string; status: string };
     expect(created.name).toBe("Test Room");
     expect(created.status).toBe("online");
+
+    const after = await list("?q=Test Room");
+    expect(after.total).toBe(1);
+    expect(after.items[0]?.id).toBe(created.id);
   });
 
   it("refuses a duplicate name", async () => {
@@ -131,10 +269,10 @@ describe("POST /api/devices", () => {
 
 describe("PATCH /api/devices/:id", () => {
   it("updates a device", async () => {
-    const listResponse = await fetch(`${baseUrl}/api/devices?q=Berlin`);
-    const [device] = (await listResponse.json()) as { id: string }[];
+    const page = await list("?q=Berlin");
+    const device = page.items[0]!;
 
-    const response = await fetch(`${baseUrl}/api/devices/${device!.id}`, {
+    const response = await fetch(`${baseUrl}/api/devices/${device.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: "deactivated" }),
@@ -158,13 +296,13 @@ describe("PATCH /api/devices/:id", () => {
 
 describe("DELETE /api/devices/:id", () => {
   it("removes a device", async () => {
-    const listResponse = await fetch(`${baseUrl}/api/devices?q=Berlin`);
-    const [device] = (await listResponse.json()) as { id: string }[];
+    const page = await list("?q=Berlin");
+    const device = page.items[0]!;
 
-    const response = await fetch(`${baseUrl}/api/devices/${device!.id}`, { method: "DELETE" });
+    const response = await fetch(`${baseUrl}/api/devices/${device.id}`, { method: "DELETE" });
     expect(response.status).toBe(204);
 
-    const after = await fetch(`${baseUrl}/api/devices/${device!.id}`);
+    const after = await fetch(`${baseUrl}/api/devices/${device.id}`);
     expect(after.status).toBe(404);
   });
 });

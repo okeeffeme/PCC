@@ -23,7 +23,9 @@ import styles from "./DataTable.module.css";
 /**
  * The table is the one place a third-party library shapes our code. This
  * wrapper is the boundary: feature code speaks our own column/sorting/paging
- * types, and TanStack's API never leaks past this file.
+ * types, and TanStack's API never leaks past this file. When the server owns
+ * paging/sorting, `manual*` flags are passed through so TanStack never re-sorts
+ * or re-pages the window the API already gave us.
  */
 
 const features = tableFeatures({
@@ -77,6 +79,13 @@ export interface DataTableProps<TData extends RowData> {
   onPaginationChange: (updater: DataTablePaginationUpdater) => void;
   /** Table-wide filter value (the name search). */
   globalFilter?: string;
+  /** When true, sorting and pagination come from the server. */
+  manualSorting?: boolean;
+  manualPagination?: boolean;
+  /** Total rows on the server (required for manual pagination). */
+  rowCount?: number;
+  /** Available page sizes shown in a select. */
+  pageSizeOptions?: number[];
 }
 
 export function DataTable<TData extends RowData>({
@@ -89,6 +98,10 @@ export function DataTable<TData extends RowData>({
   pagination,
   onPaginationChange,
   globalFilter = "",
+  manualSorting = false,
+  manualPagination = false,
+  rowCount,
+  pageSizeOptions,
 }: DataTableProps<TData>) {
   const helper = createColumnHelper<typeof features, TData>();
 
@@ -123,11 +136,14 @@ export function DataTable<TData extends RowData>({
     },
     onSortingChange: (updater) => onSortingChange(updater),
     onPaginationChange: (updater) => onPaginationChange(updater),
+    manualSorting,
+    manualPagination,
+    ...(rowCount !== undefined ? { rowCount } : {}),
   });
 
   const pageCount = table.getPageCount();
   const pageIndex = pagination.pageIndex;
-  const totalRows = table.getRowCount();
+  const totalRows = manualPagination ? (rowCount ?? 0) : table.getRowCount();
 
   const renderCell = (row: TData, columnId: string) => {
     const column = columns.find((candidate) => candidate.id === columnId);
@@ -187,7 +203,7 @@ export function DataTable<TData extends RowData>({
         </table>
       </div>
 
-      {totalRows === 0 && globalFilter !== "" ? (
+      {totalRows === 0 && globalFilter !== "" && !manualPagination ? (
         <EmptyState
           title="No devices match your search"
           description="Try a different name, or clear the search to see the whole fleet."
@@ -201,6 +217,23 @@ export function DataTable<TData extends RowData>({
             : `Page ${pageIndex + 1} of ${Math.max(pageCount, 1)} · ${totalRows} devices`}
         </p>
         <div className={styles.paginationControls}>
+          {pageSizeOptions && pageSizeOptions.length > 0 ? (
+            <label>
+              <span className={styles.paginationInfo}>Rows per page</span>{" "}
+              <select
+                value={pagination.pageSize}
+                onChange={(event) =>
+                  onPaginationChange({ pageIndex: 0, pageSize: Number(event.target.value) })
+                }
+              >
+                {pageSizeOptions.map((size) => (
+                  <option key={size} value={size}>
+                    {size}
+                  </option>
+                ))}
+              </select>
+            </label>
+          ) : null}
           <Button
             variant="secondary"
             onClick={() => table.previousPage()}
