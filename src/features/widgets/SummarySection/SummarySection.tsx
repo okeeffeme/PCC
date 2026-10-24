@@ -1,7 +1,7 @@
 import { StatusSummaryDonut } from "../StatusSummaryDonut";
-import { SummaryCards } from "../SummaryCards";
+import { SummaryCards } from "./SummaryCards";
 import styles from "./SummarySection.module.css";
-import { exportDevicesHref } from "../../api/deviceApi";
+import { exportDevicesHref } from "../../devices/api/deviceApi";
 
 const ALL_VALUE = "all";
 
@@ -30,13 +30,15 @@ export function SummarySection({
   });
 
   return (
-    <div className={styles.wrapper}>
-      <StatusSummaryDonut
-        summary={summary}
-        activeStatus={activeStatus}
-        onStatusChange={onStatusChange}
-      />
-      <SummaryCards activeStatus={activeStatus} onStatusChange={onStatusChange} query={query} />
+    <div className={styles.container}>
+      <div className={styles.wrapper}>
+        <StatusSummaryDonut
+          summary={summary}
+          activeStatus={activeStatus}
+          onStatusChange={onStatusChange}
+        />
+        <SummaryCards activeStatus={activeStatus} onStatusChange={onStatusChange} query={query} />
+      </div>
       <p className={styles.export}>
         <a href={exportHref}>Export as CSV</a>
       </p>

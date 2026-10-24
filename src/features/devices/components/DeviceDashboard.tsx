@@ -18,8 +18,7 @@ const HistorySection = lazy(async () => {
 import { DeviceFilters } from "./DeviceFilters";
 import { DeviceFormDialog } from "./DeviceFormDialog";
 import { DeviceTableSection } from "./DeviceTableSection";
-import { SummarySection } from "./SummarySection";
-import { SummarySectionSkeleton } from "./SummarySection";
+import { SummarySection, SummarySectionSkeleton } from "../../widgets/SummarySection";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { fetchDeviceSummary } from "../api/deviceApi";
 import { deviceKeys } from "../api/queryKeys";

@@ -16,8 +16,8 @@ describe("DeviceDashboard", () => {
   it("summarises the fleet and lists the devices", async () => {
     await renderDashboard();
 
-    const totalCard = screen.getByRole("button", { name: /Total devices/ });
-    expect(within(totalCard).getByText("4")).toBeInTheDocument();
+    const totalHeader = screen.getByRole("heading", { name: /Total devices/ });
+    expect(within(totalHeader).getByText("4")).toBeInTheDocument();
 
     expect(screen.getByRole("row", { name: /Berlin - Boardroom A/ })).toBeInTheDocument();
     expect(screen.getByRole("row", { name: /Lisbon - Focus Room 2/ })).toBeInTheDocument();
@@ -44,7 +44,8 @@ describe("DeviceDashboard", () => {
   it("filters the table by status from the summary cards", async () => {
     const { user } = await renderDashboard();
 
-    await user.click(screen.getByRole("button", { name: /Online/ }));
+    const onlineCard = screen.getByRole("button", { name: /Online/ });
+    await user.click(onlineCard);
 
     await waitFor(
       () => {
@@ -56,6 +57,11 @@ describe("DeviceDashboard", () => {
     );
     expect(
       await screen.findByRole("row", { name: /Berlin - Exec Suite 1/ }, { timeout: 5000 }),
+    ).toBeInTheDocument();
+
+    await user.click(onlineCard);
+    expect(
+      await screen.findByRole("row", { name: /Lisbon - Focus Room 2/ }, { timeout: 5000 }),
     ).toBeInTheDocument();
   });
 

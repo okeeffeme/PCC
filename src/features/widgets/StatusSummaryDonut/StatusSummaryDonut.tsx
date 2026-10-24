@@ -1,16 +1,11 @@
 import { useId } from "react";
 import { Cell, Label, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import { STATUS_SEGMENTS } from "../../devices/statusMeta";
 import styles from "./StatusSummaryDonut.module.css";
 import { StatusSummaryDonutSkeleton } from "./StatusSummaryDonutSkeleton";
 
 const ALL_VALUE = "all";
-
-const SEGMENTS = [
-  { key: "online", label: "Online", color: "var(--status-online-fg)" },
-  { key: "inMeeting", label: "In meeting", color: "var(--status-inmeeting-fg)" },
-  { key: "offline", label: "Offline", color: "var(--status-offline-fg)" },
-  { key: "deactivated", label: "Deactivated", color: "var(--status-deactivated-fg)" },
-] as const;
+const ALL_LABEL = "Total devices";
 
 export interface StatusSummaryDonutProps {
   summary: any;
@@ -30,7 +25,7 @@ export function StatusSummaryDonut({
     return <StatusSummaryDonutSkeleton />;
   }
 
-  const data = SEGMENTS.map((segment) => ({
+  const data = STATUS_SEGMENTS.map((segment) => ({
     name: segment.label,
     value: summary[segment.key],
     key: segment.key,
@@ -57,6 +52,9 @@ export function StatusSummaryDonut({
   };
 
   const chartData = data.length > 0 ? data : [{ name: "Total", value: total, key: ALL_VALUE }];
+  const isFiltered = activeStatus !== ALL_VALUE && activeStatus in summary;
+  const centerPrimary = isFiltered ? summary[activeStatus] : total;
+  const centerSecondary = isFiltered ? `of ${total} total` : ALL_LABEL;
 
   return (
     <div className={styles.wrapper}>
@@ -65,7 +63,11 @@ export function StatusSummaryDonut({
           Fleet summary showing {total} devices: {summary.online} online, {summary.inMeeting} in
           meeting, {summary.offline} offline, {summary.deactivated} deactivated.
         </p>
-        <ResponsiveContainer width="100%" height={260}>
+        <ResponsiveContainer
+          width="100%"
+          height={260}
+          initialDimension={{ width: 260, height: 260 }}
+        >
           <PieChart>
             <Pie
               data={chartData}
@@ -87,7 +89,23 @@ export function StatusSummaryDonut({
                   opacity={activeStatus === ALL_VALUE || activeStatus === entry.key ? 1 : 0.4}
                 />
               ))}
-              <Label position="center" className={styles.centerLabel} value={total} />
+              <Label
+                position="center"
+                content={({ viewBox }) => {
+                  const cx = viewBox && "cx" in viewBox ? (viewBox.cx ?? "50%") : "50%";
+                  const cy = viewBox && "cy" in viewBox ? (viewBox.cy ?? 130) : 130;
+                  return (
+                    <text x={cx} y={cy} textAnchor="middle" dominantBaseline="central">
+                      <tspan x={cx} dy="-0.4em" className={styles.centerText}>
+                        {centerPrimary}
+                      </tspan>
+                      <tspan x={cx} dy="1.4em" className={styles.centerSubtext}>
+                        {centerSecondary}
+                      </tspan>
+                    </text>
+                  );
+                }}
+              />
             </Pie>
             <Tooltip
               contentStyle={{
