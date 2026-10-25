@@ -87,8 +87,11 @@ export const DeviceCursorQuerySchema = z.object({
 });
 export type DeviceCursorQuery = z.infer<typeof DeviceCursorQuerySchema>;
 
-/** A flat export accepts the same filters as the list, without paging. */
-export const DeviceExportQuerySchema = z.object({ ...filterShape });
+/** A flat export streams via keyset cursor batches (default batch size = MAX_CURSOR_LIMIT). */
+export const DeviceExportQuerySchema = z.object({
+  ...filterShape,
+  limit: z.coerce.number().int().min(1).max(MAX_CURSOR_LIMIT).default(MAX_CURSOR_LIMIT),
+});
 export type DeviceExportQuery = z.infer<typeof DeviceExportQuerySchema>;
 
 /** Facet counts deliberately ignore `status` — see D-019. */

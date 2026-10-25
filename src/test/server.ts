@@ -134,6 +134,19 @@ export const handlers = [
       );
     }
     const body = (await request.json()) as Partial<Device>;
+    if (
+      body.name !== undefined &&
+      devices.some(
+        (candidate) =>
+          candidate.id !== device.id &&
+          candidate.name.toLowerCase() === body.name!.trim().toLowerCase(),
+      )
+    ) {
+      return HttpResponse.json(
+        { error: "duplicate_name", message: "A device with that name already exists", issues: [] },
+        { status: 409 },
+      );
+    }
     const updated = { ...device, ...body };
     devices.splice(devices.indexOf(device), 1, updated);
     return HttpResponse.json(updated);

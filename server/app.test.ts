@@ -188,8 +188,8 @@ describe("GET /api/devices/summary", () => {
 });
 
 describe("GET /api/devices?format=csv", () => {
-  it("streams every matching row as an attachment", async () => {
-    const response = await fetch(`${baseUrl}/api/devices?format=csv&q=berlin`);
+  it("streams every matching row as an attachment across cursor batches", async () => {
+    const response = await fetch(`${baseUrl}/api/devices?format=csv&q=berlin&limit=10`);
 
     expect(response.status).toBe(200);
     expect(response.headers.get("content-type")).toContain("text/csv");
@@ -275,12 +275,33 @@ describe("PATCH /api/devices/:id", () => {
     const response = await fetch(`${baseUrl}/api/devices/${device.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ status: "deactivated" }),
+      body: JSON.stringify({
+        name: device.name,
+        model: device.model,
+        description: device.description,
+        status: "deactivated",
+      }),
     });
 
     expect(response.status).toBe(200);
     const updated = (await response.json()) as { status: string };
     expect(updated.status).toBe("deactivated");
+  });
+
+  it("refuses renaming a device to another existing device's name", async () => {
+    const page = await list("?q=Berlin");
+    const first = page.items[0]!;
+    const second = page.items[1]!;
+
+    const response = await fetch(`${baseUrl}/api/devices/${first.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: second.name }),
+    });
+
+    expect(response.status).toBe(409);
+    const body = (await response.json()) as { error: string };
+    expect(body.error).toBe("duplicate_name");
   });
 
   it("returns 404 for an unknown id", async () => {

@@ -1,12 +1,12 @@
 import { z } from "zod";
-import { DeviceSchema } from "../../shared/schemas/device";
+import { DeviceSchema, type Device } from "../../shared/schemas/device";
 import { readSeedFile } from "./readSeedFile";
 
 /**
- * The provided devices.json, parsed and validated against our own schema at
- * startup. If the brief's data ever stops matching the contract, the server
- * fails loudly instead of serving something subtly wrong.
+ * Reads and validates devices.json against our schema on demand, without
+ * holding a second permanent copy of the seed array in module scope.
  */
-const raw: unknown = readSeedFile("devices.json");
-
-export const seededDevices = z.array(DeviceSchema).parse(raw);
+export function loadSeedDevices(): Device[] {
+  const raw: unknown = readSeedFile("devices.json");
+  return z.array(DeviceSchema).parse(raw);
+}

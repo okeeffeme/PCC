@@ -28,11 +28,11 @@
   /* ---- colour: status ---- */
   --status-online-fg: #238825;
   --status-online-bg: #e2f4ea;
-  --status-inmeeting-fg: #1380A1;
+  --status-inmeeting-fg: #1380a1;
   --status-inmeeting-bg: #e5ebfc;
-  --status-offline-fg: #E82001;
+  --status-offline-fg: #e82001;
   --status-offline-bg: #edf0f3;
-  --status-deactivated-fg: #667A76;
+  --status-deactivated-fg: #667a76;
   --status-deactivated-bg: #f9e9e9;
 
   /* ---- space ---- */

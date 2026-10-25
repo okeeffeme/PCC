@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
-import { Router } from "express";
-import { decodeCursor } from "../../shared/cursor";
+import { once } from "node:events";
+import { Router, type Response } from "express";
+import { decodeCursor, type CursorPayload } from "../../shared/cursor";
 import {
   CreateDeviceSchema,
   DeviceCursorQuerySchema,
@@ -15,8 +16,6 @@ import { validate } from "../validation";
 
 export const devicesRouter: Router = Router();
 
-const CSV_BATCH = 500;
-
 const csvCell = (value: string) => `"${value.replaceAll('"', '""')}"`;
 
 const csvLine = (device: {
@@ -28,7 +27,13 @@ const csvLine = (device: {
 }) =>
   [device.id, device.name, device.model, device.status, device.description].map(csvCell).join(",");
 
-devicesRouter.get("/", (req, res) => {
+async function writeChunk(res: Response, chunk: string): Promise<void> {
+  if (!res.write(chunk)) {
+    await once(res, "drain");
+  }
+}
+
+devicesRouter.get("/", async (req, res) => {
   if (req.query.format === "csv") {
     const parsed = validate(DeviceExportQuerySchema, req.query);
     if (!parsed.ok) {
@@ -36,22 +41,30 @@ devicesRouter.get("/", (req, res) => {
       return;
     }
 
-    const rows = deviceRepository.all(parsed.data);
     res.setHeader("Content-Type", "text/csv; charset=utf-8");
     res.setHeader("Content-Disposition", 'attachment; filename="devices.csv"');
-    res.write("id,name,model,status,description\n");
-    // Batches keep the write bounded even when the result set is not.
-    for (let index = 0; index < rows.length; index += CSV_BATCH) {
-      const batch = rows
-        .slice(index, index + CSV_BATCH)
-        .map(csvLine)
-        .join("\n");
-      if (batch) res.write(`${batch}\n`);
+    await writeChunk(res, "id,name,model,status,description\n");
+
+    let cursor: CursorPayload | null = null;
+    while (!res.writableEnded && !res.destroyed) {
+      const page = deviceRepository.queryAfter(parsed.data, cursor);
+
+      if (page.items.length > 0) {
+        await writeChunk(res, `${page.items.map(csvLine).join("\n")}\n`);
+      }
+
+      if (!page.nextCursor) {
+        break;
+      }
+      cursor = decodeCursor(page.nextCursor);
+      if (!cursor) {
+        break;
+      }
     }
+
     res.end();
     return;
   }
-
   // `limit` on its own means "cursor mode, first page" — no cursor yet.
   const hasCursor = req.query.cursor !== undefined || req.query.limit !== undefined;
   const hasPage = req.query.page !== undefined;
@@ -163,11 +176,14 @@ devicesRouter.patch("/:id", (req, res) => {
     return;
   }
 
-  if (parsed.data.name !== undefined && deviceRepository.findByName(parsed.data.name)) {
-    res
-      .status(409)
-      .json({ error: "duplicate_name", message: "A device with that name already exists" });
-    return;
+  if (parsed.data.name !== undefined) {
+    const duplicate = deviceRepository.findByName(parsed.data.name);
+    if (duplicate && duplicate.id !== existing.id) {
+      res
+        .status(409)
+        .json({ error: "duplicate_name", message: "A device with that name already exists" });
+      return;
+    }
   }
 
   const updated = deviceRepository.update(req.params.id, parsed.data);

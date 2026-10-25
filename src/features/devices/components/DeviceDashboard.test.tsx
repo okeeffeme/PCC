@@ -91,6 +91,23 @@ describe("DeviceDashboard", () => {
     expect(await within(dialog).findByText(/already exists/i)).toBeInTheDocument();
   });
 
+  it("edits an existing device without triggering a duplicate name conflict with itself", async () => {
+    const { user } = await renderDashboard();
+
+    await user.click(screen.getByRole("button", { name: /^Edit Berlin - Exec Suite 1/ }));
+    const dialog = await screen.findByRole("dialog", { name: "Edit Berlin - Exec Suite 1" });
+
+    await user.selectOptions(within(dialog).getByLabelText("Status"), "offline");
+    await user.click(within(dialog).getByRole("button", { name: "Save changes" }));
+
+    await waitFor(() => {
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+
+    const row = screen.getByRole("row", { name: /Berlin - Exec Suite 1/ });
+    expect(within(row).getByText("Offline")).toBeInTheDocument();
+  });
+
   it("removes a device after confirmation", async () => {
     const { user } = await renderDashboard();
 

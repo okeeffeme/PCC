@@ -49,8 +49,14 @@ export function matchesFilters(device: Device, filters: DeviceFilters): boolean 
   return true;
 }
 
-export function filterDevices(devices: Device[], filters: DeviceFilters): Device[] {
-  return devices.filter((device) => matchesFilters(device, filters));
+export function filterDevices(devices: Iterable<Device>, filters: DeviceFilters): Device[] {
+  const matched: Device[] = [];
+  for (const device of devices) {
+    if (matchesFilters(device, filters)) {
+      matched.push(device);
+    }
+  }
+  return matched;
 }
 
 /**
@@ -71,7 +77,7 @@ export function compareDevices(
 }
 
 export function sortDevices(devices: Device[], sort: DeviceSort, order: SortOrder): Device[] {
-  return [...devices].sort((left, right) => compareDevices(left, right, sort, order));
+  return devices.sort((left, right) => compareDevices(left, right, sort, order));
 }
 
 export interface DeviceWindow {
@@ -93,17 +99,20 @@ export function offsetWindow(sorted: Device[], page: number, pageSize: number): 
  * the whole matching set while one status is selected (D-019). The exact count
  * for the current view comes from the list response's `total`.
  */
-export function facetSummary(devices: Device[], filters: DeviceFilters): DeviceSummary {
-  const scoped = filterDevices(devices, { q: filters.q, model: filters.model });
+export function facetSummary(devices: Iterable<Device>, filters: DeviceFilters): DeviceSummary {
   const summary: DeviceSummary = {
-    total: scoped.length,
+    total: 0,
     online: 0,
     inMeeting: 0,
     offline: 0,
     deactivated: 0,
   };
-  for (const device of scoped) {
-    summary[device.status] += 1;
+  const scopedFilters: DeviceFilters = { q: filters.q, model: filters.model };
+  for (const device of devices) {
+    if (matchesFilters(device, scopedFilters)) {
+      summary.total += 1;
+      summary[device.status] += 1;
+    }
   }
   return summary;
 }
