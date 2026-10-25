@@ -1,15 +1,11 @@
 # Device Fleet — PCC Frontend Engineer Homework
 
-A dashboard for the meeting-room device fleet: live status for every device, counts by status,
-a monthly status-history chart, and controls to add, edit and remove hardware.
+A dashboard for the meeting-room device fleet: live status for every device, counts by status, and controls to add, edit and remove hardware.
 
-The brief is a **frontend** exercise, so the API here is a small mock service — but it is a _real_
-one: an Express 5 process with real HTTP status codes, real validation and real latency. The client
-is written exactly as it would be against a production backend.
+The API here is a small mock service: an Express 5 process with HTTP status codes, validation and mocked latency. The idea was to write the client as it would be against a production backend.
 
 ```
 browser ──► Vite dev server :5173 ──proxy /api──► Express 5 :3001 ──► devices.json
-       └──────────────── one origin, no CORS ─────────────────┘
 ```
 
 ---
@@ -19,6 +15,7 @@ browser ──► Vite dev server :5173 ──proxy /api──► Express 5 :300
 ```bash
 # 1. Toolchain (Vite+ ships its own Node — no winget/nvm needed)
 irm https://viteplus.dev/install.ps1 | iex   # Windows PowerShell
+curl -fsSL https://vite.plus | bash          # macOS or Linux
 vp env install lts                          # Node 24 LTS
 vp env pin lts                              # pins .node-version for this repo
 
@@ -37,8 +34,6 @@ vp build                                    # production build → dist/
 
 Open <http://localhost:5173>.
 
-**Production shape:** `vp build` then `node --import tsx server/index.ts` — the same Express process
-serves `dist/` and the API, with a SPA fallback for client-side routes.
 
 | Command          | What it does                                                   |
 | ---------------- | -------------------------------------------------------------- |
@@ -52,49 +47,14 @@ serves `dist/` and the API, with a SPA fallback for client-side routes.
 
 ---
 
-## Troubleshooting
-
-**`run: nothing found -- skipped` / `install: nothing found -- skipped`**
-That output comes from a _different_ `vp`: on WSL, `/usr/bin/vp` is the GNU vcdiff tool (`vcat`),
-not Vite+, and WSL has no Node on it at all. This repo is a Windows-side Node project —
-`node_modules` holds `win32-x64` native binaries — so run the commands from **Windows
-PowerShell**:
-
-```powershell
-cd C:\Users\Doomcake\Documents\PCC
-vp install
-vp run dev:api     # terminal 1 — Express on :3001
-vp dev             # terminal 2 — app on :5173
-```
-
-Do not run `npm install` from WSL: it would swap the Windows-native binaries for Linux ones and
-break the Windows setup. Keep the two environments apart.
-
-**`Failed to load task graph — conflicts with a package.json script of the same name`**
-A task in `vite.config.ts` → `run.tasks` may not share a name with a `package.json` script;
-package.json scripts are already exposed as tasks. `vp run dev:api` therefore resolves to the npm
-script, and the explicit task was removed.
-
----
-
 ## What it does
 
-- **Device list** — 433 devices, sortable by name/model/status, filtered by name (case-insensitive),
-  paginated **by the server** (25/50/100 per page, default 25) with a page-size control.
-- **Status summary** — total plus a count per status from a server facet aggregate that ignores the
-  status filter, so the cards stay useful while one is selected. Each card is also a status filter;
-  the exact filtered count comes from the list's `total`.
-- **CSV export** — the current filter/sort as a streamed download (`?format=csv`), never built in
-  the browser.
-- **Add / edit / remove** — a validated form (react-hook-form + zod) with inline field errors, a
-  duplicate-name error mapped back onto the name field, and a confirmation step before removal.
-  Edits and deletes are optimistic across every cached page, roll back on failure, and reconcile
-  on settle; a create invalidates instead, because a new name has no known sort position.
-- **Status history** — the 56 monthly points as a stacked area chart, with the same numbers exposed
-  in a visually-hidden table for screen-reader users.
-- **Query state lives in the URL** — `?q=…&status=…&sort=…&order=…&page=…&pageSize=…`, so a
-  filtered, sorted page can be shared or reloaded. Search is debounced (300 ms); changing a filter
-  resets to page 1.
+- **Device list** — 433 devices, sortable by name/model/status, filtered by name (case-insensitive), paginated by the server (25/50/100 per page, default 25) with a page-size control.
+- **Status summary (donut + cards)** — an interactive Recharts donut chart (`StatusSummaryDonut`) paired with a summary column. Powered by a server facet aggregate (`/api/devices/summary`) that ignores the status filter so all four status counts stay visible while one is selected. Clicking either a donut slice or a status card filters by that status (and clicking an active selection clears the filter); when filtered, the donut center updates from `{total}` / `Total devices` to `{selectedCount}` / `of {total} total` (or renders a `0` empty donut skeleton when `total === 0`).
+- **CSV export** — the current filter/sort streamed as an HTTP attachment (`?format=csv`) in bounded keyset cursor batches (`deviceRepository.queryAfter`) with backpressure (`drain`), never buffered all at once in memory or built in the browser.
+- **Add / edit / remove** — a validated form (react-hook-form + zod) with inline field errors, a duplicate-name error mapped back onto the name field, and a confirmation step before removal. Edits and deletes are optimistic across every cached page, roll back on failure, and reconcile on settle; a create invalidates instead, because a new name has no known sort position.
+- **Status history** — the 56 monthly points as a stacked area chart, with the same numbers exposed in a visually-hidden table for screen-reader users.
+- **Query state lives in the URL** — `?q=…&status=…&sort=…&order=…&page=…&pageSize=…`, so a filtered, sorted page can be shared or reloaded. Search is debounced (300 ms); changing a filter resets to page 1.
 
 ---
 
@@ -103,137 +63,62 @@ script, and the explicit task was removed.
 ```
 PCC/
 ├─ shared/            zod schemas + inferred types — ONE contract for client, server and tests
-├─ server/            Express 5 API (routes, validation, in-memory repository, seed loader)
+├─ server/            Express 5 API (routes, validation, Map-backed repository, seed loader)
 ├─ src/
 │  ├─ app/            shell: providers, error boundary
-│  ├─ components/     hand-rolled, stateless UI primitives + thin TanStack/Recharts wrappers
-│  ├─ features/       containers: devices (dashboard, cards, filters, table, form) and history
+│  ├─ components/     hand-rolled, stateless UI primitives (DataTable, Dialog, StatusIcon, StatusBadge, …)
+│  ├─ features/
+│  │  ├─ devices/     dashboard container, filters, table, form dialog, API client, hooks, statusMeta
+│  │  ├─ widgets/     SummarySection (SummaryCards) and StatusSummaryDonut
+│  │  └─ history/     lazy-loaded StatusHistoryChart section
 │  ├─ styles/         design tokens + global styles
 │  └─ test/           MSW server, render helper, setup
 └─ vite.config.ts     vite + lint + fmt + test + run blocks
 ```
 
-Rules the layout encodes:
-
-1. **`shared/` is the contract.** The form, the server and the tests all validate with the same zod
-   schemas, so they cannot drift.
-2. **Only `api/deviceApi.ts` knows URLs.** Components → hooks → api → `fetch`.
-3. **Containers vs presentational.** `src/components/**` is stateless and controlled;
-   `src/features/**/components/**` owns state and calls hooks.
-4. **One owner per piece of state.** TanStack Query owns the server cache and the mutation pending
-   flag; react-hook-form owns the form fields; the dialog owns its open/closed state.
-5. **Every component is a folder** — `Component.tsx`, `Component.module.css`, `index.ts` (and a test
-   where there is behaviour worth asserting).
-
 ### Data flow
 
 ```
 URL (q, status, sort, order, page, pageSize)
-        │  debounced q
+        │  debounced q (300 ms)
         ▼
-useSuspenseQuery(deviceKeys.list(params))  ──►  GET /api/devices?page&pageSize&…  ──►  PaginatedDevices
-        │                                                                               { items, page, pageSize, total, totalPages }
-        └─► <DataTable manualSorting manualPagination>  (server window + total)
-
-useSuspenseQuery(deviceKeys.summary(filters))  ──►  GET /api/devices/summary?q&model  ──►  facets
-        └─► <SummaryCards>  (counts as status filters + CSV link)
+useQuery(deviceKeys.list(params), keepPreviousData)     ──►  GET /api/devices?page&pageSize&…  ──►  PaginatedDevices
+        │                                                                                            { items, page, pageSize, total, totalPages }
+        └─► <DataTable manualSorting manualPagination>  (server window + total, no skeleton flash on page/filter change)
+useQuery(deviceKeys.summary(filters), keepPreviousData) ──►  GET /api/devices/summary?q&model  ──►  DeviceSummary (ETag / 304)
+        └─► <SummarySection>
+              ├─► <StatusSummaryDonut> (1/4 row, center total / filtered count + slice drill-down)
+              ├─► <SummaryCards>       (3/4 row, Total devices header + 4 status cards with <StatusIcon>)
+              └─► CSV export link      (/api/devices?format=csv&…)
 ```
 
-Two queries, each cached by its own key: the table asks for one window, the cards ask for the
-aggregate. The summary ignores `status` on purpose (a facet), so selecting a status does not
-collapse the other cards. The list's `total` is the authoritative count for the selected filter.
+Two queries, each cached by its own key and using `placeholderData: keepPreviousData` so typing, sorting, or paging never flashes a skeleton over existing content. The summary ignores `status` on purpose (a facet), so selecting a status does not collapse the other cards or donut slices.
 
-**Pagination contract.** Offset mode (`page`/`pageSize`) is what the UI uses. The same endpoint
-also supports cursor mode (`limit` + optional `cursor`, keyset, `409 stale_cursor` if the filter
-changes) and streams CSV. See [D-018](./docs/decision-log.md#d-018) and
-[D-019](./docs/decision-log.md#d-019).
+**Pagination contract.** Offset mode (`page`/`pageSize`) is what the UI table uses. The same endpoint also supports keyset cursor mode (`limit` + optional `cursor`, `Link: rel="next"`, `409 stale_cursor` if filters/sort change) and uses that cursor mode internally to stream CSV exports in bounded batches. At very deep offsets (millions of rows) the `OFFSET` scan becomes the cost, so the table could switch to the cursor contract.
 
 ---
 
 ## Decisions
 
-Every trade-off — with its cost, its benefit and what would reverse it — lives in
-**[`docs/decision-log.md`](./docs/decision-log.md)**. The short version:
-
 | Topic            | Choice                         | One-line why                                                    |
 | ---------------- | ------------------------------ | --------------------------------------------------------------- |
-| Toolchain        | Vite+ (`vp check`, `vp test`)  | One config, one command instead of four tools                   |
-| Runtime          | Vite SPA + Express API         | No SSR needed; the API boundary is the thing under test         |
-| Server state     | TanStack Query v5              | Cache, staleness, invalidation and rollback for free            |
-| Server framework | Express 5                      | Familiarity wins when the options are equivalent                |
-| API style        | REST                           | Flat data, two read shapes, no codegen step                     |
-| Forms            | react-hook-form + zod resolver | Field-level validation the shared schema already describes      |
-| Table            | TanStack Table v9              | Manual sort/paging over a server window, behind our own wrapper |
-| Charting         | Recharts                       | React-native, and wrapped for the a11y contract                 |
-| Styling          | CSS Modules + `tokens.css`     | Scoped, zero runtime, one file to re-theme                      |
-| Types            | TypeScript 6.0.3               | Editor-friendly; `vp check` type-checks on tsgo (TS 7)          |
-| Tests            | Vitest 5 + RTL + MSW           | The network layer is the seam; queries are role/name based      |
-
-The build plan, the API contract, the layout rules and the risk list are in
-**[`docs/implementation-plan.md`](./docs/implementation-plan.md)**.
+| Toolchain        | Vite+ (`vp check`, `vp test`)  | Simple, single command with linters/tests |
+| Runtime          | Vite SPA + Express API         | SPA for internal dashboard |
+| Server framework | Express 5                      | Most familiar with |
+| API style        | REST                           | Flat data, two read shapes |
+| Forms            | react-hook-form + zod resolver | Field-level validation the shared schema, RHF supports dirty/touched       |
+| Table            | TanStack Table v9              | Manual sort/paging over a server window, thin wrapper |
+| Charting         | Recharts                       | React-native, most familiar |
+| Styling          | CSS Modules + `tokens.css`     | Scoped, one file to re-theme |
+| Tests            | Vitest 5 + RTL + MSW           | Queries are role/name based
 
 ---
 
 ## Accessibility
 
-Not a checklist at the end — a constraint on how the components are written:
-
-- Semantic HTML first: `<table>`/`<caption>`/`<th scope="col">`, `<label for>` on every control,
-  `<button type="button">` everywhere, landmark regions with headings.
+- Semantic HTML first: `<table>`/`<caption>`/`<th scope="col">`, `<label for>` on every control, `<button type="button">` everywhere, landmark regions with headings.
 - The dialog traps focus, closes on <kbd>Escape</kbd>, and returns focus to the trigger.
-- Sortable headers expose `aria-sort`; the chart is `role="img"` with a label **and** a
-  visually-hidden table of the same numbers.
-- Status is never colour-only — a dot plus the status word.
-- Visible `:focus-visible` rings, ≥4.5:1 text contrast, `prefers-reduced-motion` respected.
+- Sortable headers expose `aria-sort`; the chart is `role="img"` with a label **and** a visually-hidden table of the same numbers.
+- Status is never colour-only — `StatusBadge` pairs a dot with the status word, `SummaryCards` pairs `<StatusIcon>` with the count and label, and `StatusSummaryDonut` exposes an `aria-labelledby` text summary of all counts alongside interactive card buttons.
+- Visible `:focus-visible` rings, ≥4.5:1 text contrast.
 - Because the tests query by role and accessible name, breaking the a11y contract breaks a test.
-
----
-
-## Testing
-
-```
-src/components/Button/Button.test.tsx                   type, click, pending state
-src/components/TextField/TextField.test.tsx           label, hint/error wiring, RHF props
-src/components/Select/Select.test.tsx                   label, options, value
-src/components/Badge/Badge.test.tsx                     content
-src/components/StatusBadge/StatusBadge.test.tsx         status in words, not colour alone
-src/components/Skeleton/Skeleton.test.tsx               decorative
-src/components/EmptyState/EmptyState.test.tsx           role="status"
-src/components/ErrorFallback/ErrorFallback.test.tsx     role="alert" + retry
-src/components/Dialog/Dialog.test.tsx                  semantics, Escape, focus in/out, focus trap
-src/components/DataTable/DataTable.test.tsx            caption, sort delegation, global filter
-src/components/StatusHistoryChart/StatusHistoryChart.test.tsx
-                                                       role="img" + the hidden data table
-src/features/devices/components/DeviceDashboard.test.tsx
-                                                       filter by name, filter by status, add,
-                                                       duplicate-name error, remove
-server/app.test.ts                                     the API over real HTTP (22 cases:
-                                                       offset paging, full cursor walk, CSV,
-                                                       facet summary + ETag, validation)
-```
-
-51 tests across 13 files. `vp test` runs all of them. The client tests go through MSW at the network
-layer (same URL contract as the server); the API tests hit a real Express instance on an ephemeral
-port.
-
----
-
-## Known limitations / what I'd do next
-
-1. **Deep offset pages.** Offset pagination is what the UI needs, and cursor mode already exists
-   for exports. At very deep offsets (millions of rows) the `OFFSET` scan becomes the cost, so the
-   table would switch to the cursor contract; the schemas and repository seam are ready.
-2. **Batch import.** Documented but not built: `POST /api/devices/imports` → `202` + job id,
-   progress polling, per-row results, `Idempotency-Key`. A single-row create cannot be made
-   optimistic cheaply; a batch job needs a job resource, not a bigger POST.
-3. **No auth.** Mutations assume an authenticated operator; the real model (who may deactivate a
-   device) is an open question for the reviewer.
-4. **Live status.** The client polls nothing — `staleTime` is 15s for lists and there is no push
-   channel. Webhooks/SSE would change the cache strategy, not the components.
-5. **Edit is deliberately thin.** It reuses the add form, but a real product would show device
-   metadata (firmware, room, last seen) that the brief's data does not contain.
-6. **E2E.** Playwright is the first thing I would add — the accessibility and flow guarantees are
-   currently covered at the component and API level.
-7. **The mock API is in-memory.** Restarting the server resets the fleet; a real backend would own
-   persistence and the aggregate would be one SQL `GROUP BY` (the logic is already isolated in
-   `server/querying.ts` for exactly that swap).
